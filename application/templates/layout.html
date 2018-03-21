@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <title>FullCureApplication</title>
+    </head>
+    {% block body %}
+     <p>
+       Content.
+     </p>
+    {% endblock %}
+    <body>
+      <ul>
+        <li><a href="{{ url_for('list_all') }}">List all users</a>
+        <li><a href="{{ url_for('new_user') }}">Add new user</a>
+      </ul>
+    </body>
+  </html>

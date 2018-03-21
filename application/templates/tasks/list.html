@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+  <html>
+    <body>
+      <hr/>
+            <h3>FullCure crew </h3>
+        <table>
+          <thead>
+              <tr>
+                  <th> Username </th>
+                  <th> Address </th>
+                  <th> Role </th>
+                  <th> Email </th>
+                  <th> Update email </th>
+                  <th> Delete </th>
+              </tr>
+           </thead>
+
+           <tbody>
+             {% for user in users %}
+                <tr>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.appt_addr }}</td>
+                    <td>{{ user.role }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>
+                      <form method="POST" action="./update">
+                         <input type="hidden" value="{{user.email}}" name="old_email">
+                         <input type="text" value="{{user.email}}" name="new_email">
+                         <input type="submit" value="Update">
+                       </form>
+                    </td>
+                    <td>
+                       <form method="POST" action="./delete">
+                         <input type="hidden" value="{{user.id}}" name="id">
+                        <input type="submit" value="Delete">
+                       </form>
+                    </td>
+                </tr>
+
+             {% endfor %}
+          </tbody>
+        </table>
+        <form action="{{ url_for('index') }}">
+          <input type="submit" value="Back to mainpage"/>
+        </form>
+        <form action="{{ url_for('create_user') }}">
+          <input type="submit" value="Add new user"/>
+        </form>
+    </body>
+  </html>

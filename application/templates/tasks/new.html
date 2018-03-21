@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <title>FullCureApplication</title>
+    </head>
+    <body>
+      <form method="POST" action="{{ url_for('create_user') }}" >
+        <label for = "name">Username</label><br>
+        <input type = "text" name = "name" placeholder = "Username" /><br>
+        <label for = "appt_addr">Addres</label><br>
+        <input type = "text" name = "appt_addr" placeholder = "Addres" /><br>
+        <label for = "role">Role</label><br>
+        <input type = "text" name = "role" placeholder = "Role"></label><br>
+        <label for = "email">Email</label><br>
+        <input type = "text" name = "email" placeholder = "Email"></label><br>
+        <input type="submit" value="Add new user"/>
+      </form>
+      <form action="{{ url_for('index') }}">
+        <input type="submit" value="Back to mainpage"/>
+      </form>
+    </body>
+  </html>
