@@ -1,6 +1,5 @@
 # FullCure
-FullCure on Web-palvelu jossa asiakas voi varata käyntiajan lääkärille. Vastaanottoaikoja on tarjolla useilla ei paikkakunnilla.
-Palvelun käyttäminen edellyttää rekisteröitymistä
+FullCure on Web-palvelu, jossa asiakas voi varata vastaanotto ajan lääkärille. Vastaanottoaikoja on tarjolla useilla eri paikkakunnilla. Palvelun käyttäminen edellyttää rekisteröitymistä.
 
 [Linkki sovellukseen Herokussa.](https://fullcure-app.herokuapp.com)
 
