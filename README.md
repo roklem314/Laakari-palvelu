@@ -4,4 +4,4 @@ Palvelun käyttäminen edellyttää rekisteröitymistä
 
 [Linkki sovellukseen Herokussa.](https://fullcure-app.herokuapp.com)
 
-[Linkki käyttötapauksiin](../blob/documentation/user_story)
+[Linkki käyttötapauksiin](../blob/Laakari-palvelu/documentation/user_story)
