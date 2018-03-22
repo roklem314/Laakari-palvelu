@@ -17,6 +17,7 @@ def new_user():
 def create_user():
    if request.method == 'POST':
          newuser = users(request.form['name'], request.form['appt_addr'],request.form['role'],request.form['email'])
+
          db.session.add(newuser)
          db.session.commit()
 
@@ -25,34 +26,15 @@ def create_user():
 
    return render_template("tasks/new.html")
 
-@app.route("/modify", methods=['GET','POST'])
-def update_user():
-    if request.method == 'POST':
-        uid = request.form['uid']
-        new_name = request.form['name']
-        new_addr = request.form['appt_addr']
-        new_role = request.form['role']
-        new_email = request.form['email']
-        user = users.query.filter_by(id = uid).first()
-        if new_name != "":
-            user.name = new_name
-        if new_addr != "":
-            user.appt_addr = new_addr
-        if new_role != "":
-            user.role = new_role
-        if new_email != "":
-            user.email = new_email
+@app.route("/update", methods=["POST"])
+def update():
+    newemail = request.form.get("new_email")
+    oldemail = request.form.get("old_email")
+    user = users.query.filter_by(email=oldemail).first()
+    user.email = newemail
+    db.session.commit()
 
-        db.session.commit()
-
-        return redirect( url_for('list_all'))
-
-    return redirect( url_for('index'))
-
-@app.route("/update/<int:uid>", methods=["GET"])
-def update(uid: int):
-    user = users.query.filter_by(id = uid).first()
-    return render_template("tasks/modify.html", user=user)
+    return redirect( url_for('list_all'))
 
 @app.route("/delete", methods=["POST"])
 def delete():

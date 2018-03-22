@@ -1,4 +1,5 @@
 venv
 .DS_Store
+kanta.db
 __pycache__
 kanta.db

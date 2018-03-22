@@ -23,13 +23,15 @@
                     <td>{{ user.role }}</td>
                     <td>{{ user.email }}</td>
                     <td>
-                      <form method="GET" action="{{ url_for('update',  uid=user.id)}}">
-                        <input type="hidden" uid="{{user.id}}">
-                       <input type="submit" value="Update">
-                      </form>
-                      <td>
-                       <form method="POST" action="{{ url_for('delete')}}">
-                         <input type="hidden" value="{{user.id}}" name="uid">
+                      <form method="POST" action="./update">
+                         <input type="hidden" value="{{user.email}}" name="old_email">
+                         <input type="text" value="{{user.email}}" name="new_email">
+                         <input type="submit" value="Update">
+                       </form>
+                    </td>
+                    <td>
+                       <form method="POST" action="./delete">
+                         <input type="hidden" value="{{user.id}}" name="id">
                         <input type="submit" value="Delete">
                        </form>
                     </td>
