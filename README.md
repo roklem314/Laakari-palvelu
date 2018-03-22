@@ -4,4 +4,4 @@ Palvelun käyttäminen edellyttää rekisteröitymistä
 
 [Linkki sovellukseen Herokussa.](https://fullcure-app.herokuapp.com)
 
-[Linkki käyttötapauksiin](../documentation/user_story)
+[Linkki käyttötapauksiin](../blob/master/user_story)
