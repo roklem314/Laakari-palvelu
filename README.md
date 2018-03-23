@@ -3,6 +3,6 @@ FullCare on Web-palvelu, jossa asiakas voi varata vastaanotto ajan lääkärille
 
 [Linkki sovellukseen Herokussa.](https://fullcure-app.herokuapp.com)
 
-[Linkki käyttötapauksiin](https://github.com/roklem314/Laakari-palvelu/blob/master/documentation/user_story)
+[Linkki käyttötapauksiin](https://github.com/roklem314/Laakari-palvelu/blob/master/documentation/user_story.md)
 
 [Linkki tietokantakaavioon](https://github.com/roklem314/Laakari-palvelu/blob/master/documentation/tietokantakaavio1.jpg)
