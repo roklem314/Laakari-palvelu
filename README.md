@@ -5,4 +5,4 @@ FullCure on Web-palvelu, jossa asiakas voi varata vastaanotto ajan lääkärille
 
 [Linkki käyttötapauksiin](https://github.com/roklem314/Laakari-palvelu/blob/master/documentation/user_story)
 
-[Linkki tietokantakaavioon](https://github.com/roklem314/Laakari-palvelu/blob/master/documentation/tietokantakaavio0.pdf)
+[Linkki tietokantakaavioon](https://github.com/roklem314/Laakari-palvelu/blob/master/documentation/tietokantakaavio1.jpg)
