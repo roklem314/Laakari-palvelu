@@ -1,11 +1,15 @@
 # User storyt
 
-- Asiakas(potilas/lääkäri) voi listata omat tiedot
--	Asiakas(potilas/lääkäri) voi päivittää omia tietojaan
--	Asiakas(potilas/lääkäri) voi kirjautua palveluun
--	Asiakas(potilas) voi varata vapaan vastaanotto ajan
--	Asiakas(potilas) voi perua varaamansa vastaanotto ajan
--	Asiakas(potilas) voi listata vapaat vastaanotto ajat
--	Asiakas(lääkäri) voi kirjata uuden vastaanotto ajan
--	Asiakas(lääkäri) voi listata omat vastaanotto ajat
--	Asiakas(lääkäri) voi perua vastaanotto aikojaan
+- Ylläpito voi kirjautua palveluun
+- Ylläpito voi listata kaikki palvelun käyttäjät
+- Ylläpito voi lisätä uuden lääkärin palveluun
+- Potilas voi päivittää omia tietojaan
+-	Lääkäri voi päivittää omia tietojaan
+- Lääkäri voi kirjautua palveluun
+- Potilas voi kirjautua palveluun
+-	Potilas voi varata vapaan vastaanotto ajan
+-	Potilas voi perua varaamansa vastaanotto ajan
+-	Potilas voi listata vapaat vastaanotto ajat
+-	Lääkäri voi kirjata uuden vastaanotto ajan
+-	Lääkäri voi listata omat vastaanotto ajat
+-	Lääkäri voi perua omia vastaanotto aikoja
