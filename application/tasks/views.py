@@ -13,7 +13,7 @@ def laakarit():
 @app.route('/uusi_asiakas', methods = ['GET', 'POST'])
 def uusi_asiakas():
    if request.method == 'POST':
-        if request.form['name'] != "" or request.form['appt_addr'] != "" or request.form['role'] != "" or request.form['email'] != "":
+        if request.form['name'] != "" and request.form['appt_addr'] != "" and request.form['role'] != "" and request.form['email'] != "":
             newuser = users(request.form['name'], request.form['appt_addr'],request.form['role'],request.form['email'])
             db.session.add(newuser)
             db.session.commit()
