@@ -1,25 +1,32 @@
 <!DOCTYPE html>
   <html>
+    <head>
+      <meta charset="utf-8">
+      <title>FullCareApplication</title>
+    </head>
     <body>
       <hr/>
             <form method="POST" action="{{ url_for('update_user') }}" >
               <input type="hidden" value="{{user.id}}" name="uid">
 
-              <label for = "name">Username : {{user.name}}</label><br>
-              <input type = "text" name = "name" placeholder = "Username" /><br>
+              <label for = "name">Nimi : {{user.name}}</label><br>
+              <input type = "text" name = "name" placeholder = "Nimi" /><br>
 
-              <label for = "appt_addr">Addres : {{user.appt_addr}}</label><br>
-              <input type = "text" name = "appt_addr" placeholder = "Addres" /><br>
+              <label for = "Osoite">Osoite : {{user.appt_addr}}</label><br>
+              <input type = "text" name = "appt_addr" placeholder = "Osoite" /><br>
 
-              <label for = "role">Role : {{user.role}}</label><br>
-              <input type = "text" name = "role" placeholder = "Role"></label><br>
+              <label for = "role">Rooli : {{user.role}}</label><br>
+              <input type = "text" name = "role" placeholder = "Rooli"></label><br>
 
               <label for = "email">Email : {{user.email}}</label><br>
               <input type = "text" name = "email" placeholder = "Email"></label><br>
-              <input type="submit" value="Update"/>
+              <input type="submit" value="Päivitä"/>
             </form>
             <form action="{{ url_for('index') }}">
-              <input type="submit" value="Back to mainpage"/>
+              <input type="submit" value="Etusivulle"/>
+            </form>
+            <form action="{{ url_for('list_all') }}">
+              <input type="submit" value="Takaisin"/>
             </form>
 
     </body>

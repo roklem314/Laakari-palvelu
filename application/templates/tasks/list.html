@@ -1,17 +1,22 @@
 <!DOCTYPE html>
   <html>
+  <head>
+    <meta charset="utf-8">
+    <title>FullCareApplication</title>
+  </head>
+
     <body>
       <hr/>
-            <h3>FullCure crew </h3>
+            <h3>FullCare palvelun lääkärit</h3>
         <table>
           <thead>
               <tr>
-                  <th> Username </th>
-                  <th> Address </th>
-                  <th> Role </th>
+                  <th> Nimi </th>
+                  <th> Osoite </th>
+                  <th> Rooli </th>
                   <th> Email </th>
-                  <th> Update email </th>
-                  <th> Delete </th>
+                  <th> Muokkaa </th>
+                  <th> Poista </th>
               </tr>
            </thead>
 
@@ -25,12 +30,12 @@
                     <td>
                       <form method="GET" action="{{ url_for('update',  uid=user.id)}}">
                         <input type="hidden" uid="{{user.id}}">
-                       <input type="submit" value="Update">
+                       <input type="submit" value="Muokkaa">
                       </form>
                       <td>
                        <form method="POST" action="{{ url_for('delete')}}">
                          <input type="hidden" value="{{user.id}}" name="uid">
-                        <input type="submit" value="Delete">
+                        <input type="submit" value="Poista">
                        </form>
                     </td>
                 </tr>
@@ -39,10 +44,10 @@
           </tbody>
         </table>
         <form action="{{ url_for('index') }}">
-          <input type="submit" value="Back to mainpage"/>
+          <input type="submit" value="Takaisin etusivulle"/>
         </form>
         <form action="{{ url_for('create_user') }}">
-          <input type="submit" value="Add new user"/>
+          <input type="submit" value="Lisää uusi käyttäjä"/>
         </form>
     </body>
   </html>

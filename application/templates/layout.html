@@ -2,8 +2,9 @@
   <html>
     <head>
       <meta charset="utf-8">
-      <title>FullCureApplication</title>
+      <title>FullCareApplication</title>
     </head>
+
     {% block body %}
      <p>
        Content.
@@ -11,8 +12,8 @@
     {% endblock %}
     <body>
       <ul>
-        <li><a href="{{ url_for('list_all') }}">List all users</a>
-        <li><a href="{{ url_for('new_user') }}">Add new user</a>
+        <li><a href="{{ url_for('list_all') }}">Näytä FullCare:n lääkärit</a>
+        <li><a href="{{ url_for('new_user') }}">Lisää uusi käyttäjä</a>
       </ul>
     </body>
   </html>
