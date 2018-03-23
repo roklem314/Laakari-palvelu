@@ -4,15 +4,25 @@
       <meta charset="utf-8">
       <title>FullCareApplication</title>
     </head>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class=flashes>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    {% block body %}{% endblock %}
     <body>
-      <form method="POST" action="{{ url_for('create_user') }}" >
-        <label for = "name">Nimi</label><br>
+      <form method="POST" action="{{ url_for('uusi_asiakas') }}" >
+        <label for = "name">Nimi(pakollinen)</label><br>
         <input type = "text" name = "name" placeholder = "Nimi" /><br>
-        <label for = "appt_addr">Nimi</label><br>
-        <input type = "text" name = "appt_addr" placeholder = "Nimi" /><br>
-        <label for = "role">Rooli</label><br>
+        <label for = "appt_addr">Osoite(pakollinen)</label><br>
+        <input type = "text" name = "appt_addr" placeholder = "Osoite" /><br>
+        <label for = "role">Rooli(pakollinen)</label><br>
         <input type = "text" name = "role" placeholder = "Rooli"></label><br>
-        <label for = "email">Email</label><br>
+        <label for = "email">Email(pakollinen)</label><br>
         <input type = "text" name = "email" placeholder = "Email"></label><br>
         <input type="submit" value="Lisää uusi käyttäjä"/>
       </form>

@@ -4,6 +4,16 @@
     <meta charset="utf-8">
     <title>FullCareApplication</title>
   </head>
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul class=flashes>
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+  {% block body %}{% endblock %}
 
     <body>
       <hr/>
@@ -28,7 +38,7 @@
                     <td>{{ user.role }}</td>
                     <td>{{ user.email }}</td>
                     <td>
-                      <form method="GET" action="{{ url_for('update',  uid=user.id)}}">
+                      <form method="GET" action="{{ url_for('muokkaa',  uid=user.id)}}">
                         <input type="hidden" uid="{{user.id}}">
                        <input type="submit" value="Muokkaa">
                       </form>
@@ -46,7 +56,7 @@
         <form action="{{ url_for('index') }}">
           <input type="submit" value="Takaisin etusivulle"/>
         </form>
-        <form action="{{ url_for('create_user') }}">
+        <form action="{{ url_for('uusi_asiakas') }}">
           <input type="submit" value="Lisää uusi käyttäjä"/>
         </form>
     </body>
