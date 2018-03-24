@@ -2,10 +2,11 @@
 
 - Ylläpito voi kirjautua palveluun
 - Ylläpito voi listata kaikki palvelun käyttäjät
-- Ylläpito voi lisätä uuden lääkärin palveluun
+- Ylläpito rekisteröi uuden lääkärin palveluun
 - Potilas voi päivittää omia tietojaan
 -	Lääkäri voi päivittää omia tietojaan
 - Lääkäri voi kirjautua palveluun
+- Potilas voi rekisteröityä palveluun
 - Potilas voi kirjautua palveluun
 -	Potilas voi varata vapaan vastaanotto ajan
 -	Potilas voi perua varaamansa vastaanotto ajan
