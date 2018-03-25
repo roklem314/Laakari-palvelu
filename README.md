@@ -5,4 +5,4 @@ FullCare on Web-palvelu, jossa asiakas voi varata vastaanotto ajan lääkärille
 
 [Linkki käyttötapauksiin](https://github.com/roklem314/Laakari-palvelu/blob/master/documentation/user_story.md)
 
-[Linkki tietokantakaavioon](https://github.com/roklem314/Laakari-palvelu/blob/master/documentation/tietokantakaavio1.jpg)
+[Linkki tietokantakaavioon](https://github.com/roklem314/Laakari-palvelu/blob/master/documentation/Tietokanta%20kaavio.png)
