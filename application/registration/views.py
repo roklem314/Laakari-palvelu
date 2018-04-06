@@ -13,7 +13,7 @@ def register_user():
 
     if form.validate_on_submit():
 
-        user = Users(name=form.name.data, address=form.address.data, email=form.email.data,password = bcrypt.hashpw(form.password.data.encode("utf-8"),bcrypt.gensalt()))
+        user = Users(name=form.name.data, address=form.address.data, email=form.email.data, password = bcrypt.hashpw(form.password.data.encode("utf-8"),bcrypt.gensalt()))
         # user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()

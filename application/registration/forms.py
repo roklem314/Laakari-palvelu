@@ -56,6 +56,7 @@ class DeleteForm(FlaskForm):
     def validate_password(self,password):
         u = Users.query.filter_by(email=current_user.email).first()
         # if  0 == u.check_password(password.data):
+        time.sleep(10)
         if not bcrypt.checkpw(password.data.encode("utf-8"), u.password):
             raise ValidationError('Salasanan on virheellinen!')
 
