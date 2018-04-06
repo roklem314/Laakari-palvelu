@@ -11,14 +11,9 @@ from application.auth.forms import LoginForm
 def login():
     form = LoginForm()
 
-    # if request.method == "GET":
+
     if form.validate_on_submit():
 
-
-
-    # mahdolliset validoinnit
-
-    # u = Users.query.filter_by(email=form.email.data, password=form.password.data).first()
         user = Users.query.filter_by(email=form.email.data).first()
         # if user is None or not user.check_password(form.password.data):
         if user is None or not bcrypt.checkpw(form.password.data.encode("utf-8"), user.password):

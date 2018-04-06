@@ -46,7 +46,8 @@ def modify():
         if new_email != "" or new_email != current_user.email:
             user.email = new_email
         if new_password != "" or new_password != current_user.password:
-            user.set_password(new_password)
+            password = bcrypt.hashpw(form.password.data.encode("utf-8"),bcrypt.gensalt())
+
         db.session.commit()
 
         flash('Tiedot päivitetty onnistuneesti!')
