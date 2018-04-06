@@ -13,9 +13,10 @@ def register_user():
 
     if form.validate_on_submit():
 
-        user = Users(name=form.name.data, address=form.address.data, email=form.email.data, password = bcrypt.hashpw(form.password.data.encode("utf-8"),bcrypt.gensalt()))
+        # user = Users(name=form.name.data, address=form.address.data, email=form.email.data, password = bcrypt.hashpw(form.password.data.encode("utf-8"),bcrypt.gensalt()))
         # user.set_password(form.password.data)
-        db.session.add(user)
+        u = Users(name=form.name.data, address=form.address.data, email=form.email.data, password = form.password.data)
+        db.session.add(u)
         db.session.commit()
 
         flash('Rekisteröityminen onnistui, voit kirjautua palveluun!')
@@ -46,7 +47,8 @@ def modify():
         if new_email != "" or new_email != current_user.email:
             user.email = new_email
         if new_password != "" or new_password != current_user.password:
-            password = bcrypt.hashpw(form.password.data.encode("utf-8"),bcrypt.gensalt())
+            # password = bcrypt.hashpw(form.password.data.encode("utf-8"),bcrypt.gensalt())
+            password = form.password.data
 
         db.session.commit()
 
