@@ -1,6 +1,8 @@
 # flask-sovellus
 from flask import Flask
+
 app = Flask(__name__)
+
 
 # tietokanta
 from flask_sqlalchemy import SQLAlchemy

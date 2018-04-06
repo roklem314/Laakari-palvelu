@@ -3,6 +3,7 @@ from flask_login import current_user
 from wtforms import StringField, PasswordField, BooleanField,SubmitField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
 from application.registration.models import Users
+import bcrypt
 
 
 class RegistrationForm(FlaskForm):
@@ -54,7 +55,8 @@ class DeleteForm(FlaskForm):
 
     def validate_password(self,password):
         u = Users.query.filter_by(email=current_user.email).first()
-        if  0 == u.check_password(password.data):
+        # if  0 == u.check_password(password.data):
+        if not bcrypt.checkpw(form.password.data, user.password):
             raise ValidationError('Salasanan on virheellinen!')
 
 

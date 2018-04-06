@@ -4,6 +4,7 @@ from application import app,db
 from application.registration.forms import RegistrationForm,ModifyForm,DeleteForm
 from application.registration.models import Users
 from application.appointment.models import Appointment
+import bcrypt
 
 @app.route('/register', methods=['GET', 'POST'])
 def register_user():
@@ -12,8 +13,8 @@ def register_user():
 
     if form.validate_on_submit():
 
-        user = Users(name=form.name.data, address=form.address.data, email=form.email.data)
-        user.set_password(form.password.data)
+        user = Users(name=form.name.data, address=form.address.data, email=form.email.data,password = bcrypt.hashpw(form.password.data.encode("utf-8"),bcrypt.gensalt()))
+        # user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
 

@@ -16,11 +16,11 @@
         </ul>
       {% endif %}
       {% endwith %}
-
+      {{here}}
       {% if current_user.is_authenticated %}
        <p>
 	       Kirjautunut nimellä {{ current_user.name }}. <a href="{{ url_for('logout') }}">Kirjaudu ulos</a>
-         <a href="{{ url_for('index') }}">Etusivulle</a>
+
          <p>
 
            <ul>
@@ -35,13 +35,14 @@
 
 
       {% else %}
-       <a href="{{ url_for('index') }}">Etusivulle</a>
+
        <a href="{{ url_for('login') }}">Kirjaudu</a>
        <a href="{{ url_for('register_user') }}"> Rekisteröidy</a>
 
 
 
       {% endif %}
+      <a href="{{ url_for('index') }}">Etusivulle</a>
 
       {% block body %}
         <p>
