@@ -16,7 +16,7 @@
         </ul>
       {% endif %}
       {% endwith %}
-      {{here}}
+
       {% if current_user.is_authenticated %}
        <p>
 	       Kirjautunut nimellä {{ current_user.name }}. <a href="{{ url_for('logout') }}">Kirjaudu ulos</a>
