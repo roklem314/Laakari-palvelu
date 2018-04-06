@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <table>
+    <tr>
+      <th>Aika</th>
+      <th>Päivämäärä</th>
+      <th></th>
+    </tr>
+    {% for appt in appts%}
+      <tr>
+          <!-- <td>{{ appt.id }}</td> -->
+          <td>{{ appt.time }}</td>
+          <td>{{ appt.date }}</td>
+          <td>{% if appt.state == False %}
+                  <form method="GET" action="{{ url_for('varaa',uid= appt.id)}}">
+                   <input type="hidden" uid="{{appt.id}}">
+                   <input type="submit" value="Varaa">
+                  </form>
+              {% else %}
+                {{"Varattu"}}
+              {% endif %}</td>
+
+      </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

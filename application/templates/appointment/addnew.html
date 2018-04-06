@@ -1,0 +1,24 @@
+
+{% extends "layout.html" %}
+
+  {% block body %}
+  <form method="POST" action="{{ url_for('new_appt') }}">
+    <table>
+      {{ form.hidden_tag() }}
+      <p>
+          {{ form.time.label }}</br>
+          {{ form.time(size=5) }} </br>
+          {% for error in form.time.errors %}
+          {% endfor %}
+          {{ form.date.label }}</br>
+          {{ form.date(size=10) }}</br>
+          {% for error in form.date.errors %}
+          {% endfor %}
+
+      </p>
+	       <td colspan="3">
+	          <input type="submit" value="Add a new appt"/>
+	       </td>
+      </tr>
+  </form>
+  {% endblock %}

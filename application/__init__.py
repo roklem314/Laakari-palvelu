@@ -1,24 +1,42 @@
-# Tuodaan Flask käyttöön
+# flask-sovellus
 from flask import Flask
 app = Flask(__name__)
 
-# Tuodaan SQLAlchemy käyttöön
+# tietokanta
 from flask_sqlalchemy import SQLAlchemy
-# Käytetään tasks.db-nimistä SQLite-tietokantaa. Kolme vinoviivaa
-# kertoo, tiedosto sijaitsee tämän sovelluksen tiedostojen kanssa
-# samassa paikassa
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///kanta.db"
-# Pyydetään SQLAlchemyä tulostamaan kaikki SQL-kyselyt
 app.config["SQLALCHEMY_ECHO"] = True
-app.config["SECRET_KEY"] = "random string"
 
-# Luodaan db-olio, jota käytetään tietokannan käsittelyyn
 db = SQLAlchemy(app)
 
-# Luetaan kansiosta application tiedoston views sisältö
+# oman sovelluksen toiminnallisuudet
 from application import views
-from application.tasks import models
-from application.tasks import views
 
-# Luodaan lopulta tarvittavat tietokantataulut
+from application.appointment import models
+from application.appointment import views
+
+# from application.auth import models
+from application.auth import views
+
+from application.registration import models
+from application.registration import views
+
+# rekisteroituminen
+from application.registration.models import Users
+from os import urandom
+app.config["SECRET_KEY"] = urandom(42)
+
+from flask_login import LoginManager
+
+login_manager = LoginManager()
+login_manager.setup_app(app)
+
+login_manager.login_view = "login"
+login_manager.login_message = "Please login to use this functionality."
+
+@login_manager.user_loader
+def load_user(user_id):
+    return Users.query.get(user_id)
+
+# luodaan taulut tietokantaan tarvittaessa
 db.create_all()

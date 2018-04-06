@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+    <h3>Käyttäjätietojen poistaminen</h3>
+    <form method="POST"  action="{{ url_for('delete_user')}}" >
+
+      <table>
+        <tr>
+          <th>Nimi</th>
+          <th>Osoite</th>
+          <th>Email</th>
+        </tr>
+          <tr>
+              <td>{{ current_user.name }}</td>
+              <td>{{ current_user.address }}</td>
+              <td>{{ current_user.email }}</td>
+
+          </tr>
+      </table>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul class=flashes>
+              {% for message in messages %}
+              <li>{{ message }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+
+      <p>
+          {{ form.password.label }}<br>
+          {{ form.password(size=20, value = current_user.password) }}<br>
+          {% for error in form.password.errors %}
+          <span style="color: red;">[{{ error }}]</span>
+          {% endfor %}
+      </p>
+      <p>
+          {{ form.password2.label }}<br>
+          {{ form.password2(size=20,value = current_user.password) }}<br>
+          {% for error in form.password2.errors %}
+          <span style="color: red;">[{{ error }}]</span>
+          {% endfor %}
+      </p>
+
+        <p> <input type="submit" value="Poista tiedot"/></p>
+    </form>
+{% endblock %}

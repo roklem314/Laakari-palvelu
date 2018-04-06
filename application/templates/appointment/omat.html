@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <table>
+    <tr>
+      <th>Aika</th>
+      <th>Päivämäärä</th>
+      <th></th>
+    </tr>
+    {% for appt in omat%}
+      <tr>
+          <!-- <td>{{ appt.id }}</td> -->
+          <td>{{ appt.time }}</td>
+          <td>{{ appt.date }}</td>
+          <td>{% if appt.state == True %}
+                  <form method="GET" action="{{ url_for('peru',uid= appt.id)}}">
+                   <input type="hidden" uid="{{appt.id}}">
+                   <input type="submit" value="Peru">
+                  </form>
+              {% else %} {{"Varattu"}}
+              {% endif %}</td>
+
+      </tr>
+    {% endfor %}
+  </table>
+{% endblock %}
