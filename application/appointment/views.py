@@ -1,5 +1,5 @@
 from application import app, db
-from flask import redirect, render_template, request, url_for,redirect
+from flask import Flask, redirect, render_template, request, url_for,redirect, flash
 from flask_login import login_required, current_user
 
 from application.appointment.models import Appointment
@@ -60,5 +60,5 @@ def new_appt():
 @app.route("/appointment/omat",methods= ['GET'])
 @login_required
 def varaukset():
-    
+
     return render_template("appointment/omat.html", omat = Appointment.query.filter(current_user.id == Appointment.account_id).all())

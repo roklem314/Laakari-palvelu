@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_login import login_user, logout_user, current_user
 # import bcrypt
 import time
