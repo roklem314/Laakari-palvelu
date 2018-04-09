@@ -10,6 +10,11 @@ from application.auth.forms import LoginForm
 
 @app.route("/login", methods = ["GET", "POST"])
 def login():
+
+    if current_user.is_authenticated:
+        login_user(u)
+        return redirect(url_for("index"))
+
     form = LoginForm()
 
 
@@ -35,4 +40,5 @@ def login():
 @app.route("/auth/logout", methods = ['GET'])
 def logout():
     logout_user()
+    flash("Uloskirjautuminen onnistui!")
     return redirect(url_for("index"))

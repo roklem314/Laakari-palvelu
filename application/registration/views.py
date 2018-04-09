@@ -13,8 +13,7 @@ def register_user():
 
     if form.validate_on_submit():
 
-        # user = Users(name=form.name.data, address=form.address.data, email=form.email.data, password = bcrypt.hashpw(form.password.data.encode("utf-8"),bcrypt.gensalt()))
-        # user.set_password(form.password.data)
+
         u = Users(name=form.name.data, address=form.address.data, email=form.email.data, password = form.password.data)
         db.session.add(u)
         db.session.commit()
@@ -40,13 +39,13 @@ def modify():
         new_email = form.email.data
         new_password = form.password.data
         user = Users.query.filter_by(id = current_user.id).first()
-        if new_name != "":
+        if new_name != current_user.name:
             user.name = new_name
-        if new_addr != "" :
+        if new_addr != current_user.address :
             user.address = new_addr
-        if new_email != "" or new_email != current_user.email:
+        if new_email != current_user.email:
             user.email = new_email
-        if new_password != "" or new_password != current_user.password:
+        if new_password != current_user.password:
             # password = bcrypt.hashpw(form.password.data.encode("utf-8"),bcrypt.gensalt())
             password = form.password.data
 

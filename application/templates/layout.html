@@ -21,7 +21,7 @@
        <p>
 	       Kirjautunut nimellä {{ current_user.name }}. <a href="{{ url_for('logout') }}">Kirjaudu ulos</a>
 
-         <p>
+        
 
            <ul>
              <li><a href = "{{ url_for('modify') }}">Muokkaa tietoja</a></li>
@@ -29,7 +29,6 @@
              <li><a href="{{ url_for('appts_list') }}">Listaa ajat</a></li>
              <li><a href = "{{ url_for('delete_user') }}">Poista tili</a></li>
 
-             <!-- <li><a href="{{ url_for('appt_form') }}">Lisää aika</a></li> -->
            </ul>
        </p>
 
