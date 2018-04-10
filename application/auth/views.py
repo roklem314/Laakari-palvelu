@@ -23,7 +23,7 @@ def login():
         # if u is None or not bcrypt.checkpw(form.password.data.encode("utf-8"), u.password):
         if u is None or not (u.password == form.password.data):
 
-            return render_template("auth/login.html", form = form, error = "Salasana tai email eivät täsmää!")
+            return render_template("auth/login.html", form = form)
 
         login_user(u)
         return redirect(url_for("index"))
