@@ -15,15 +15,15 @@ def login():
 
     form = LoginForm()
 
-
     if form.validate_on_submit():
 
         u = Users.query.filter_by(email=form.email.data).first()
 
         # if u is None or not bcrypt.checkpw(form.password.data.encode("utf-8"), u.password):
-        if u is None or not (u.password == form.password.data):
+        if u.password != form.password.data:
 
-            return render_template("auth/login.html", form = form)
+            return render_template("auth/login.html", form = form, error = "No such username or password")
+
 
         login_user(u)
         return redirect(url_for("index"))
