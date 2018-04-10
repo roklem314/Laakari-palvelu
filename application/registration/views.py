@@ -4,7 +4,7 @@ from application import app,db
 from application.registration.forms import RegistrationForm,ModifyForm,DeleteForm
 from application.registration.models import Users
 from application.appointment.models import Appointment
-import bcrypt
+# import bcrypt
 
 @app.route('/register', methods=['GET', 'POST'])
 def register_user():
@@ -14,7 +14,9 @@ def register_user():
     if form.validate_on_submit():
 
 
-        u = Users(name=form.name.data, address=form.address.data, email=form.email.data, password = form.password.data)
+        # u = Users(name=form.name.data, address=form.address.data, email=form.email.data,password = bcrypt.hashpw(form.password.data.encode("utf-8"),bcrypt.gensalt()))
+        u = Users(name=form.name.data, address=form.address.data, email=form.email.data, password=form.password.data)
+        # u.set_password(form.password.data)
         db.session.add(u)
         db.session.commit()
 
@@ -23,10 +25,6 @@ def register_user():
 
     return render_template('/registration/register.html', form=form)
 
-# @app.route('/layout', methods = ['GET'])
-# def reg_u():
-#     form = RegistrationForm()
-#     return render_template('/registration/register.html', form=form)
 
 @app.route("/registration/modify",  methods = ['GET', 'POST'])
 @login_required
@@ -38,16 +36,19 @@ def modify():
         new_addr = form.address.data
         new_email = form.email.data
         new_password = form.password.data
-        user = Users.query.filter_by(id = current_user.id).first()
+        u = Users.query.filter_by(id = current_user.id).first()
         if new_name != current_user.name:
-            user.name = new_name
+            u.name = new_name
         if new_addr != current_user.address :
-            user.address = new_addr
+            u.address = new_addr
         if new_email != current_user.email:
-            user.email = new_email
+            u.email = new_email
+        # if not bcrypt.checkpw(form.password.data.encode("utf-8"), u.password):
+        #     u.password = bcrypt.hashpw(form.password.data.encode("utf-8"),bcrypt.gensalt())
         if new_password != current_user.password:
-            # password = bcrypt.hashpw(form.password.data.encode("utf-8"),bcrypt.gensalt())
-            password = form.password.data
+            u.password = new_password
+
+
 
         db.session.commit()
 
@@ -61,10 +62,10 @@ def modify():
 def delete_user():
 
     form = DeleteForm()
-    # if request.method == 'POST':
+
     if form.validate_on_submit():
 
-        user = Users.query.filter_by(id = current_user.id).first()
+        u = Users.query.filter_by(id = current_user.id).first()
         omat = Appointment.query.filter(current_user.id == Appointment.account_id).all()
 
         for o in omat:
@@ -73,7 +74,7 @@ def delete_user():
             t.account_id = None
             db.session().commit()
 
-        db.session.delete(user)
+        db.session.delete(u)
         db.session.commit()
         flash('Poisto onnistui!')
 

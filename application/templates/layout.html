@@ -21,12 +21,10 @@
        <p>
 	       Kirjautunut nimellä {{ current_user.name }}. <a href="{{ url_for('logout') }}">Kirjaudu ulos</a>
 
-        
-
            <ul>
              <li><a href = "{{ url_for('modify') }}">Muokkaa tietoja</a></li>
-             <li><a href = "{{ url_for('varaukset') }}">Listaa omat ajat</a></li>
-             <li><a href="{{ url_for('appts_list') }}">Listaa ajat</a></li>
+             <li><a href = "{{ url_for('appts_own') }}">Listaa omat ajat</a></li>
+             <li><a href= "{{ url_for('appts_list') }}">Listaa ajat</a></li>
              <li><a href = "{{ url_for('delete_user') }}">Poista tili</a></li>
 
            </ul>

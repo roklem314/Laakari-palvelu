@@ -1,5 +1,8 @@
 from application import db,app
 # from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import current_user
+
+
 
 
 #
@@ -22,7 +25,7 @@ class Users(db.Model):
 
     appts = db.relationship("Appointment", backref='account', lazy=True)
 
-    def __init__(self, name, address, email, password):
+    def __init__(self, name, address, email,password):
         self.name = name
         self.address = address
         self.email = email

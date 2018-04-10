@@ -35,7 +35,7 @@ class ModifyForm(FlaskForm):
     password = PasswordField('Salasana',validators=[DataRequired("Salasana on pakollinen!")])
     password2 = PasswordField('Toista salasana', validators=[DataRequired("Anna salasana uudelleen!"),EqualTo("password")])
 
-    def validate_email(self, email):
+    def validate_email_password(self, email):
         u = Users.query.filter_by(email=email.data).first()
         if u is not None:
             if u.email != current_user.email:

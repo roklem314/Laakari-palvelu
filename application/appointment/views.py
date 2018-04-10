@@ -12,6 +12,13 @@ def appts_list():
 
     return render_template("appointment/list.html", appts = Appointment.query.all())
 
+@app.route("/appointment/omat", methods=["GET"])
+@login_required
+def appts_own():
+
+    return render_template("appointment/omat.html", omat_appts = Appointment.query.filter(current_user.id == Appointment.account_id).all())
+
+
 @app.route("/appointment/addnew", methods=['GET'])
 @login_required
 def appt_form():
@@ -39,26 +46,24 @@ def peru(uid: int):
 
     return redirect(url_for("varaukset"))
 
-@app.route("/appointment/", methods=["POST"])
-@login_required
-def new_appt():
-    form = AppointmentForm(request.form)
+# @app.route("/appointment/", methods=["POST"])
+# @login_required
+# def new_appt():
+#     # form = AppointmentForm(request.form)
+#
+#     anew = Appointment(form.time.data, form.date.data)
+#     # a.account_id = current_user.id
+#
+#     # if not form.validate():
+#     #     return render_template("appointment/addnew.html", form = form)
+#
+#     db.session().add(anew)
+#     db.session().commit()
+#
+#     return redirect(url_for('appts_list'))
 
-    a = Appointment(form.time.data, form.date.data)
-    # a.account_id = current_user.id
-
-    # if not form.validate():
-    #     return render_template("appointment/addnew.html", form = form)
-
-
-
-    db.session().add(a)
-    db.session().commit()
-
-    return redirect(url_for('appts_list'))
-
-@app.route("/appointment/omat",methods= ['GET'])
-@login_required
-def varaukset():
-
-    return render_template("appointment/omat.html", omat = Appointment.query.filter(current_user.id == Appointment.account_id).all())
+# @app.route("/appointment/omat",methods= ['GET'])
+# @login_required
+# def varaukset():
+#
+#     return render_template("appointment/omat.html", omat = Appointment.query.filter(current_user.id == Appointment.account_id).all())
