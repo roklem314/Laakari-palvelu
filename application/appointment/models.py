@@ -1,12 +1,9 @@
 from application import db,app
+from application.models import Base
 
-class Appointment(db.Model):
+class Appointment(Base):
 
     __tablename__ = "appointment"
-    id = db.Column(db.Integer, primary_key=True)
-    # date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
-    # date_modified = db.Column(db.DateTime, default=db.func.current_timestamp(),
-    # onupdate=db.func.current_timestamp())
 
     # patient_idenity = db.Column('patient_idenity', db.String(30),nullable=False)
     # diagnos = db.Column('diagnos', db.String(16), nullable=False)
@@ -19,7 +16,7 @@ class Appointment(db.Model):
     state = db.Column(db.Boolean, default=False, nullable = False)
     account_id = db.Column(db.Integer, db.ForeignKey('account.id'),
                            nullable=True)
-
+    # location = db.relationship("Appt_location", backref='appointment', lazy=True)
     def __init__(self,time,date):
         self.time = time
         self.date = date

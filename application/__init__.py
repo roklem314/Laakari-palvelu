@@ -1,7 +1,12 @@
 # flask-sovellus
 from flask import Flask
+# from flask import Flask, render_template
+# from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
+# bootstrap = Bootstrap(app)
+
+
 
 
 # tietokanta
@@ -24,11 +29,13 @@ from application import views
 from application.appointment import models
 from application.appointment import views
 
-# from application.auth import models
 from application.auth import views
 
 from application.registration import models
 from application.registration import views
+
+from application.role import models
+from application.role import views
 
 # rekisteroituminen
 from application.registration.models import Users

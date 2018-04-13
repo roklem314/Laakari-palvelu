@@ -9,7 +9,8 @@ from application.registration.models import Users
 class RegistrationForm(FlaskForm):
     name = StringField('Nimi',validators=[DataRequired("Nimi on pakollinnen!")])
     address = StringField('Osoite', validators=[DataRequired("Osoite on pakollinnen!")])
-    # social_sec_num = StringField('Identity number',validators=[DataRequired()])
+    postalCode = StringField('Postinumero',validators=[DataRequired("Postinumero on pakollinen")])
+    postOffice = StringField('Osoite',validators=[DataRequired("Postinumero on pakollinen")])
     email = StringField('Email', validators=[DataRequired("Sähköposti on pakollinnen!"), Email("Tarkista sähköposti osoite!")])
     password = PasswordField('Salasana',validators=[DataRequired("Salasana on pakollinen!")])
     password2 = PasswordField('Salasana', validators=[DataRequired("Anna salasana uudelleen!"),EqualTo("password")])
@@ -30,7 +31,8 @@ class RegistrationForm(FlaskForm):
 class ModifyForm(FlaskForm):
     name = StringField('Nimi',validators=[DataRequired("Nimi on pakollinnen!")])
     address = StringField('Osoite', validators=[DataRequired("Osoite on pakollinnen!")])
-    # social_sec_num = StringField('Identity number',validators=[DataRequired()])
+    postalCode = StringField('Postinumero',validators=[DataRequired("Postinumero on pakollinen")])
+    postOffice = StringField('Osoite',validators=[DataRequired("Postinumero on pakollinen")])
     email = StringField('Email', validators=[DataRequired("Sähköposti on pakollinnen!"), Email("Tarkista sähköposti osoite!")])
     password = PasswordField('Salasana',validators=[DataRequired("Salasana on pakollinen!")])
     password2 = PasswordField('Toista salasana', validators=[DataRequired("Anna salasana uudelleen!"),EqualTo("password")])

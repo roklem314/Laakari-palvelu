@@ -1,33 +1,30 @@
 from application import db,app
-# from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import current_user
-
-
-
+from application.models import Base
 
 #
 # @login.user_loader
 # def load_user(id):
 #     return User.query.get(int(id))
 
-class Users(db.Model):
+class Users(Base):
     __tablename__ = "account"
-    id = db.Column(db.Integer, primary_key=True)
-    # date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
-    # date_modified = db.Column(db.DateTime, default=db.func.current_timestamp(),
-    #                           onupdate=db.func.current_timestamp())
 
     name = db.Column('name', db.String(144), nullable=False)
-    address = db.Column('address', db.String(30), nullable=False)
+    address = db.Column('addr', db.String(144), nullable=False)
+    postalCode = db.Column('pcode', db.String(144), nullable=False)
+    postOffice = db.Column('pOff', db.String(144), nullable = False)
     email = db.Column('email', db.String(25), unique=True)
     password = db.Column('password', db.String())
-
-
     appts = db.relationship("Appointment", backref='account', lazy=True)
+    role_id= db.Column(db.Integer, db.ForeignKey('role.id'),
+                           nullable=True)
 
-    def __init__(self, name, address, email,password):
+    def __init__(self, name, address, postalCode, postOffice,email,password):
         self.name = name
         self.address = address
+        self.postalCode = postalCode
+        self.postOffice = postOffice
         self.email = email
         self.password = password
 

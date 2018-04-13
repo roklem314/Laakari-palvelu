@@ -13,42 +13,61 @@
     <h1>Tietojen muokkaaminen</h1>
     <form method="POST"  action="{{ url_for('modify')}}" >
 
-        <p>
-            {{ form.name.label }}<br>
-            {{ form.name(size=20, value= current_user.name) }} <br>
-            {% for error in form.name.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.address.label }}<br>
-            {{ form.address(size=20, value = current_user.address) }}<br>
-            {% for error in form.address.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.email.label }}<br>
-            {{ form.email(size=20, value = current_user.email) }}<br>
-            {% for error in form.email.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.password.label }}<br>
-            {{ form.password(size=20, value = current_user.password) }}<br>
-            {% for error in form.password.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.password2.label }}<br>
-            {{ form.password2(size=20,value = current_user.password) }}<br>
-            {% for error in form.password2.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
+      <div class="form-group">
+                {{ form.name.label }}<br>
+                {{ form.name(size=20 ,value = current_user.name )}}<br>
+                {% for error in form.name.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+      </div>
+      <div class="form-group">
+                {{ form.address.label }}<br>
+                {{ form.address(size=20, value = current_user.address) }}<br>
+                {% for error in form.address.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+    </div>
+      <div class="form-group">
+                {{ form.postalCode.label }}<br>
+                {{ form.postalCode(size=20 ,value =current_user.postalCode )}}<br>
+                {% for error in form.postalCode.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+    </div>
+    <div class="form-group">
+                {{ form.postOffice.label }}<br>
+                {{ form.postOffice(size=20 , value = current_user.postOffice)}}<br>
+                {% for error in form.postOffice.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+
+    </div>
+      <div class="form-group">
+                {{ form.email.label }}<br>
+                {{ form.email(size=20 ,value = current_user.email)}}<br>
+                {% for error in form.email.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+    </div>
+    <div class="form-group">
+              {{ form.password.label }}<br>
+              {{ form.password(size=20, value = current_user.password)}}<br>
+      <small id="emailHelp" class="form-text text-muted">Vähintään 8 merkkiä.</small>
+              {% for error in form.password.errors %}
+              <span style="color: red;">[{{ error }}]</span>
+              {% endfor %}
+  </div>
+    <div class="form-group">
+              {{ form.password2.label }}<br>
+              {{ form.password2(size=20,value = current_user.password)}}<br>
+      <small id="emailHelp" class="form-text text-muted">Vähintään 8 merkkiä.</small>
+              {% for error in form.password2.errors %}
+              <span style="color: red;">[{{ error }}]</span>
+              {% endfor %}
+  </div>
 
         <p> <input type="submit" value="Vahvista"/></p>
     </form>
+
+
 {% endblock %}

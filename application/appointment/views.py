@@ -6,6 +6,7 @@ from application.appointment.models import Appointment
 from application.appointment.forms import AppointmentForm
 from application.registration.models import Users
 
+
 @app.route("/appointment/list", methods=["GET"])
 @login_required
 def appts_list():
@@ -15,7 +16,7 @@ def appts_list():
 @app.route("/appointment/omat", methods=["GET"])
 @login_required
 def appts_own():
-
+    print(current_user.id)
     return render_template("appointment/omat.html", omat_appts = Appointment.query.filter(current_user.id == Appointment.account_id).all())
 
 

@@ -7,13 +7,17 @@
 
       <table>
         <tr>
-          <th>Nimi</th>
-          <th>Osoite</th>
-          <th>Email</th>
+          <th>Nimi </th>
+          <th>  Osoite  </th>
+          <th>  Postinumero </th>
+          <th>  Postitoimipaikka  </th>
+          <th>  Email</th>
         </tr>
           <tr>
               <td>{{ current_user.name }}</td>
               <td>{{ current_user.address }}</td>
+              <td>{{ current_user.postalCode }}</td>
+              <td>{{ current_user.postOffice }}</td>
               <td>{{ current_user.email }}</td>
 
           </tr>
