@@ -6,6 +6,23 @@ from application.appointment.models import Appointment
 from application.appointment.forms import AppointmentForm
 from application.registration.models import Users
 
+from application.location.forms import LocationForm
+from application.location.models import Location
+
+@app.route("/appointment/info/<int:uid>", methods=['GET', 'POST'])
+@login_required
+def info(uid: int):
+
+    if request.method == 'POST':
+        return redirect(url_for("appts_list"))
+
+    t = Appointment.query.get(uid)
+    # t_location = Location.find_appt_loacation(t.location_id)
+    id = t.location_id
+
+
+    return render_template("appointment/info.html",t_location = Location.find_appt_loacation(id))
+
 
 @app.route("/appointment/list", methods=["GET"])
 @login_required
@@ -16,15 +33,15 @@ def appts_list():
 @app.route("/appointment/omat", methods=["GET"])
 @login_required
 def appts_own():
-    print(current_user.id)
+
     return render_template("appointment/omat.html", omat_appts = Appointment.query.filter(current_user.id == Appointment.account_id).all())
 
-
-@app.route("/appointment/addnew", methods=['GET'])
-@login_required
-def appt_form():
-
-    return render_template("appointment/addnew.html", form = AppointmentForm())
+#
+# @app.route("/appointment/addnew", methods=['GET'])
+# @login_required
+# def appt_form():
+#
+#     return render_template("appointment/addnew.html", form = AppointmentForm())
 
 @app.route("/appointment/varaa/<int:uid>", methods=['GET','POST'])
 @login_required
@@ -63,8 +80,8 @@ def peru(uid: int):
 #
 #     return redirect(url_for('appts_list'))
 
-# @app.route("/appointment/omat",methods= ['GET'])
-# @login_required
-# def varaukset():
-#
-#     return render_template("appointment/omat.html", omat = Appointment.query.filter(current_user.id == Appointment.account_id).all())
+@app.route("/appointment/omat",methods= ['GET'])
+@login_required
+def varaukset():
+
+    return render_template("appointment/omat.html", omat = Appointment.query.filter(current_user.id == Appointment.account_id).all())

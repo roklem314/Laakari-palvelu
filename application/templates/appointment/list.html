@@ -1,12 +1,24 @@
 {% extends "layout.html" %}
 
 {% block body %}
-  <table>
+<div class="container">
+    <h4>Vastaanotto aikojen listaus</h4>
+</div>
+
+<div class="container">
+      <div class="row">
+    <div class="col-md-auto">
+
+<table class="table table-hover">
+  <thead>
     <tr>
-      <th>Aika</th>
-      <th>Päivämäärä</th>
-      <th></th>
+      <th scope="col">Aika</th>
+      <th scope="col">Päivämäärä</th>
+      <th scope="col">Varauksen tila</th>
+      <th scope="col">info</th>
     </tr>
+  </thead>
+
     {% for appt in appts%}
       <tr>
           <!-- <td>{{ appt.id }}</td> -->
@@ -20,6 +32,9 @@
               {% else %}
                 {{"Varattu"}}
               {% endif %}</td>
+          <td><form method="GET" action="{{ url_for('info',uid= appt.id)}}">
+           <input type="hidden" uid="{{appt.id}}">
+           <input type="submit" value="Info"></td></form>
 
       </tr>
     {% endfor %}

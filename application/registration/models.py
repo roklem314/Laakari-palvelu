@@ -2,6 +2,8 @@ from application import db,app
 from flask_login import current_user
 from application.models import Base
 
+
+
 #
 # @login.user_loader
 # def load_user(id):
@@ -11,20 +13,16 @@ class Users(Base):
     __tablename__ = "account"
 
     name = db.Column('name', db.String(144), nullable=False)
-    address = db.Column('addr', db.String(144), nullable=False)
-    postalCode = db.Column('pcode', db.String(144), nullable=False)
-    postOffice = db.Column('pOff', db.String(144), nullable = False)
+
     email = db.Column('email', db.String(25), unique=True)
     password = db.Column('password', db.String())
     appts = db.relationship("Appointment", backref='account', lazy=True)
-    role_id= db.Column(db.Integer, db.ForeignKey('role.id'),
+    loacation_id= db.Column(db.Integer, db.ForeignKey('location.id'),
                            nullable=True)
 
-    def __init__(self, name, address, postalCode, postOffice,email,password):
+    def __init__(self, name,email,password):
         self.name = name
-        self.address = address
-        self.postalCode = postalCode
-        self.postOffice = postOffice
+
         self.email = email
         self.password = password
 

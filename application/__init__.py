@@ -31,11 +31,16 @@ from application.appointment import views
 
 from application.auth import views
 
+from application.location import models
+from application.location import views
+
 from application.registration import models
 from application.registration import views
 
-from application.role import models
-from application.role import views
+
+
+# from application.role import models
+# from application.role import views
 
 # rekisteroituminen
 from application.registration.models import Users

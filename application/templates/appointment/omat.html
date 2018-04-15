@@ -1,28 +1,47 @@
 {% extends "layout.html" %}
 
 {% block body %}
-  <table>
+<div class="container">
+    <h4>Omat ajat</h4>
+</div>
+
+<div class="container">
+      <div class="row">
+    <div class="col-md-auto">
+
+<table class="table table-hover">
+  <thead>
     <tr>
-      <th>Aika</th>
-      <th>Päivämäärä</th>
-      
-      <th></th>
+      <th scope="col">Aika</th>
+      <th scope="col">Päivämäärä</th>
+      <th scope="col"></th>
     </tr>
-    {% for appt in appts_own%}
-    {{"here"}}
-      <tr>
-          <!-- <td>{{ appt.id }}</td> -->
-          <td>{{ appt.time }}</td>
-          <td>{{ appt.date }}</td>
-          <td>{% if appt.state == True %}
+  </thead>
+
+    {% for appt in omat_appts%}
+
+
+    <tbody>
+    <tr>
+      <td>{{ appt.time }}</td>
+      <td>{{ appt.date }}</td>
+    <td>{% if appt.state == True %}
                   <form method="GET" action="{{ url_for('peru',uid= appt.id)}}">
                    <input type="hidden" uid="{{appt.id}}">
-                   <input type="submit" value="Peru">
+                      <button type="submit" class="btn btn-primary" value="Peru">Peru</button>
                   </form>
               {% else %} {{"Varattu"}}
               {% endif %}</td>
 
       </tr>
     {% endfor %}
+        </tbody>
   </table>
 {% endblock %}
+
+                  </div>
+
+          <div class="col"></div> <-- tyhjä sarake -->
+
+    </div>
+    </div>

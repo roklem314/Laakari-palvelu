@@ -14,10 +14,13 @@ class Appointment(Base):
     time = db.Column(db.String(5), nullable=False)
     date = db.Column(db.String(10), nullable = False)
     state = db.Column(db.Boolean, default=False, nullable = False)
+
     account_id = db.Column(db.Integer, db.ForeignKey('account.id'),
                            nullable=True)
+    location_id = db.Column(db.Integer, db.ForeignKey('location.id'),
+                           nullable=True)
     # location = db.relationship("Appt_location", backref='appointment', lazy=True)
-    def __init__(self,time,date):
+    def __init__(self,time,date,doctor):
         self.time = time
         self.date = date
 

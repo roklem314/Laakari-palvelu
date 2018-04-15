@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from flask_login import current_user
-from wtforms import StringField, PasswordField, BooleanField,SubmitField
+from wtforms import StringField, PasswordField, BooleanField,SubmitField,RadioField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
 from application.registration.models import Users
 # import bcrypt
@@ -8,9 +8,11 @@ from application.registration.models import Users
 
 class RegistrationForm(FlaskForm):
     name = StringField('Nimi',validators=[DataRequired("Nimi on pakollinnen!")])
+    # role = StringField('Rooli(potilas/lääkäri/muu)',validators=[DataRequired("Kenttä on pakollinnen!")])
+    # gender = RadioField('Sukupuoli', choices=[('value1','muu'),('value2','nainen'),('value2','mies')],validators=[DataRequired("Valinta on pakollinen!")])
     address = StringField('Osoite', validators=[DataRequired("Osoite on pakollinnen!")])
     postalCode = StringField('Postinumero',validators=[DataRequired("Postinumero on pakollinen")])
-    postOffice = StringField('Osoite',validators=[DataRequired("Postinumero on pakollinen")])
+    postOffice = StringField('Postitoimipaikka',validators=[DataRequired("Postinumero on pakollinen")])
     email = StringField('Email', validators=[DataRequired("Sähköposti on pakollinnen!"), Email("Tarkista sähköposti osoite!")])
     password = PasswordField('Salasana',validators=[DataRequired("Salasana on pakollinen!")])
     password2 = PasswordField('Salasana', validators=[DataRequired("Anna salasana uudelleen!"),EqualTo("password")])
@@ -19,6 +21,9 @@ class RegistrationForm(FlaskForm):
         u = Users.query.filter_by(email=email.data).first()
         if u is not None:
             raise ValidationError('Sähköposti osoite on jo käytössä!.')
+    # def validate_role(self, gender):
+    #     if gender is not null:
+    #         raise ValidationError('Valinta puuttuu!.')
 
     def validate_password(self,password):
 
@@ -30,9 +35,9 @@ class RegistrationForm(FlaskForm):
 
 class ModifyForm(FlaskForm):
     name = StringField('Nimi',validators=[DataRequired("Nimi on pakollinnen!")])
-    address = StringField('Osoite', validators=[DataRequired("Osoite on pakollinnen!")])
-    postalCode = StringField('Postinumero',validators=[DataRequired("Postinumero on pakollinen")])
-    postOffice = StringField('Osoite',validators=[DataRequired("Postinumero on pakollinen")])
+    # address = StringField('Osoite', validators=[DataRequired("Osoite on pakollinnen!")])
+    # postalCode = StringField('Postinumero',validators=[DataRequired("Postinumero on pakollinen")])
+    # postOffice = StringField('Osoite',validators=[DataRequired("Postinumero on pakollinen")])
     email = StringField('Email', validators=[DataRequired("Sähköposti on pakollinnen!"), Email("Tarkista sähköposti osoite!")])
     password = PasswordField('Salasana',validators=[DataRequired("Salasana on pakollinen!")])
     password2 = PasswordField('Toista salasana', validators=[DataRequired("Anna salasana uudelleen!"),EqualTo("password")])
