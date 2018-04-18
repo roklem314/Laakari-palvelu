@@ -1,9 +1,10 @@
+README.md
 venv
 .DS_Store
 kanta.db
 __pycache__
 images
-
+run.py
 __pycache__/
 *.py[cod]
 *$py.class

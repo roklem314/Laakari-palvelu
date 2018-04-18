@@ -1,6 +1,9 @@
 {% extends "layout.html" %}
 
 {% block body %}
+<div class="col-md-7 col-sm-6 home-banner-left">
+
+  <table class="table table-hover">
 
     <h4>Tietojen muokkaaminen</h4>
     <form method="POST"  action="{{ url_for('modify')}}" >
@@ -58,8 +61,10 @@
               {% endfor %}
   </div>
 
-        <p> <input type="submit" value="Vahvista"/></p>
+        <p> <input type="submit" class="btn btn-primary" value="Vahvista"/></p>
     </form>
+  </table>
+ </div>
 
 
 {% endblock %}

@@ -14,13 +14,14 @@
     <tr>
       <th scope="col">Aika</th>
       <th scope="col">Päivämäärä</th>
-      <th scope="col"></th>
+      <!-- <th scope="col">Osoite</th>
+      <th scope="col">Postinumero</th>
+      <th scope="col">Postitoimipaikka</th> -->
+      <th scope="col">Oma varaus</th>
     </tr>
   </thead>
 
     {% for appt in omat_appts%}
-
-
     <tbody>
     <tr>
       <td>{{ appt.time }}</td>
@@ -37,11 +38,5 @@
     {% endfor %}
         </tbody>
   </table>
+
 {% endblock %}
-
-                  </div>
-
-          <div class="col"></div> <-- tyhjä sarake -->
-
-    </div>
-    </div>

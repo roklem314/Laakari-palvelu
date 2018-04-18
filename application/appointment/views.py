@@ -27,21 +27,21 @@ def info(uid: int):
 @app.route("/appointment/list", methods=["GET"])
 @login_required
 def appts_list():
-
-    return render_template("appointment/list.html", appts = Appointment.query.all())
+    u = Users.query.filter_by(id = current_user.id).first()
+    u_home = Location.query.filter_by(id = u.loacation_id).first();
+    u_postOffice = u_home.postOffice
+    print(u_postOffice)
+    nearest_locations = Location.list_nearest_locations(u_postOffice)
+    print(nearest_locations)
+    if nearest_locations is None:
+        return render_template("appointment/list.html", appts = Appointment.query.all())
+    return render_template("appointment/list.html", appts = Appointment.query.all(), nearest_locations=nearest_locations)
 
 @app.route("/appointment/omat", methods=["GET"])
 @login_required
 def appts_own():
 
     return render_template("appointment/omat.html", omat_appts = Appointment.query.filter(current_user.id == Appointment.account_id).all())
-
-#
-# @app.route("/appointment/addnew", methods=['GET'])
-# @login_required
-# def appt_form():
-#
-#     return render_template("appointment/addnew.html", form = AppointmentForm())
 
 @app.route("/appointment/varaa/<int:uid>", methods=['GET','POST'])
 @login_required
@@ -63,6 +63,13 @@ def peru(uid: int):
     db.session().commit()
 
     return redirect(url_for("varaukset"))
+
+#
+# @app.route("/appointment/addnew", methods=['GET'])
+# @login_required
+# def appt_form():
+#
+#     return render_template("appointment/addnew.html", form = AppointmentForm())
 
 # @app.route("/appointment/", methods=["POST"])
 # @login_required

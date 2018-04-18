@@ -12,7 +12,7 @@ class Location(Base):
     __tablename__ = "location"
 
     address = db.Column('address', db.String(144), nullable=False)
-    postalCode = db.Column('postalCode', db.String(144), nullable=False)
+    postalCode = db.Column('postalCode', db.Integer(), nullable=False)
     postOffice = db.Column('postOffice', db.String(144), nullable = False)
 
     u_location = db.relationship("Users", backref='loacation', lazy=True)
@@ -38,3 +38,10 @@ class Location(Base):
             response.append({"id":row[0],"time":row[1], "date":row[2],"state":row[3],"address":row[4], "postalCode":row[5],"postOffice":row[6]})
 
         return response
+    @staticmethod
+    def list_nearest_locations(u_postOffice):
+        stmt = text("SELECT Appointment.id,Appointment.time, Appointment.date,Location.postOffice FROM Location,Appointment").params(u_postOffice=u_postOffice)
+        res = db.engine.execute(stmt)
+        response = []
+        for row in res:
+            response.append({"id":row[0],"time":row[1], "date":row[2],"postOffice":row[3]})
