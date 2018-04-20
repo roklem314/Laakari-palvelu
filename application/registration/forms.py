@@ -8,7 +8,7 @@ from application.registration.models import Users
 
 class RegistrationForm(FlaskForm):
     name = StringField('Nimi',validators=[DataRequired("Nimi on pakollinnen!")])
-    # role = StringField('Rooli(potilas/lääkäri/muu)',validators=[DataRequired("Kenttä on pakollinnen!")])
+    role = StringField('Rooli',validators=[DataRequired("Kenttä on pakollinnen!")])
     # gender = RadioField('Sukupuoli', choices=[('value1','muu'),('value2','nainen'),('value2','mies')],validators=[DataRequired("Valinta on pakollinen!")])
     address = StringField('Osoite', validators=[DataRequired("Osoite on pakollinnen!")])
     postalCode = StringField('Postinumero',validators=[DataRequired("Postinumero on pakollinen")])
@@ -35,9 +35,6 @@ class RegistrationForm(FlaskForm):
 
 class ModifyForm(FlaskForm):
     name = StringField('Nimi',validators=[DataRequired("Nimi on pakollinnen!")])
-    # address = StringField('Osoite', validators=[DataRequired("Osoite on pakollinnen!")])
-    # postalCode = StringField('Postinumero',validators=[DataRequired("Postinumero on pakollinen")])
-    # postOffice = StringField('Osoite',validators=[DataRequired("Postinumero on pakollinen")])
     email = StringField('Email', validators=[DataRequired("Sähköposti on pakollinnen!"), Email("Tarkista sähköposti osoite!")])
     password = PasswordField('Salasana',validators=[DataRequired("Salasana on pakollinen!")])
     password2 = PasswordField('Toista salasana', validators=[DataRequired("Anna salasana uudelleen!"),EqualTo("password")])

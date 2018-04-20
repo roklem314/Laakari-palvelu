@@ -4,8 +4,8 @@ from application import app,db
 from application.registration.forms import RegistrationForm,ModifyForm,DeleteForm
 from application.registration.models import Users
 from application.appointment.models import Appointment
-# from application.role.forms import RoleForm
-# from application.role.models import Role
+from application.role.forms import RoleForm
+from application.role.models import Role
 from application.location.forms import LocationForm
 from application.location.models import Location
 # import bcrypt
@@ -30,6 +30,10 @@ def register_user():
             u = Users(name=form.name.data,email=form.email.data,password= form.password.data)
             u.loacation_id = u_home.id
             db.session.add(u)
+            db.session.commit()
+
+            u_role = Role(role = form.role.data)
+            db.session.add(u_role)
             db.session.commit()
             # u_home.u_location = u.id
 
@@ -69,7 +73,7 @@ def modify():
             new_email = form.email.data
             new_password = form.password.data
 
-            if new_name != current_user.name:
+            if new_name != u.name:
                 u.name = new_name
             if new_addr != u_home.address:
                 u_home.address = new_addr
@@ -77,11 +81,11 @@ def modify():
                 u_home.postalCode = new_postalC
             if new_postF != u_home.postOffice:
                 u_home.postOffice = new_postF
-            if new_email != current_user.email:
+            if new_email != u.email:
                 u.email = new_email
                 # if not bcrypt.checkpw(form.password.data.encode("utf-8"), u.password):
                 #     u.password = bcrypt.hashpw(form.password.data.encode("utf-8"),bcrypt.gensalt())
-            if new_password != current_user.password:
+            if new_password != u.password:
                 u.password = new_password
 
         db.session.commit()

@@ -33,6 +33,7 @@ def appts_list():
     print(u_postOffice)
     nearest_locations = Location.list_nearest_locations(u_postOffice)
     print(nearest_locations)
+    # nearest_locations = Location.query.filter(Location.postOffice == u_postOffice,Location.id == Appointment.location_id).all()
     if nearest_locations is None:
         return render_template("appointment/list.html", appts = Appointment.query.all())
     return render_template("appointment/list.html", appts = Appointment.query.all(), nearest_locations=nearest_locations)

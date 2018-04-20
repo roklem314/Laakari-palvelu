@@ -47,7 +47,7 @@ from application.registration.models import Users
 from os import urandom
 app.config["SECRET_KEY"] = urandom(42)
 
-from flask_login import LoginManager
+from flask_login import LoginManager,current_user
 
 
 login_manager = LoginManager()
@@ -55,6 +55,9 @@ login_manager.setup_app(app)
 
 login_manager.login_view = "login"
 login_manager.login_message = "Please login to use this functionality."
+
+# roles in login_required
+from functools import wraps
 
 @login_manager.user_loader
 def load_user(user_id):

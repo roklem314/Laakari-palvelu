@@ -7,16 +7,16 @@ class Role(Base):
 
     role = db.Column('role', db.String(144), nullable=False)
     # appt_loc = db.relationship("Appt_location", backref='locations', lazy=True)
-    user_role = db.relationship("Users", backref="role", lazy=True)
+    user_role = db.relationship("User_Role", backref="role", lazy=True)
     # user_id = db.Column(db.Integer, db.ForeignKey('user.id'),
     #                        nullable=True)
 
     def __init__(self, role):
         self.role = role
 
-# class User_Role(Base):
-#
-#     location_id = db.Column(db.Integer, db.ForeignKey('location.id'),
-#                            nullable=True)
-#     appt_id = db.Column(db.Integer, db.ForeignKey('appointment.id'),
-#                            nullable=True)
+class User_Role(Base):
+
+    role_id = db.Column(db.Integer, db.ForeignKey('role.id'),
+                           nullable=True)
+    account_id = db.Column(db.Integer, db.ForeignKey('account.id'),
+                           nullable=True)

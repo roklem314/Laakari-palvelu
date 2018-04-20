@@ -38,10 +38,13 @@ class Location(Base):
             response.append({"id":row[0],"time":row[1], "date":row[2],"state":row[3],"address":row[4], "postalCode":row[5],"postOffice":row[6]})
 
         return response
+
     @staticmethod
     def list_nearest_locations(u_postOffice):
-        stmt = text("SELECT Appointment.id,Appointment.time, Appointment.date,Location.postOffice FROM Location,Appointment").params(u_postOffice=u_postOffice)
+        stmt = text("SELECT Appointment.id,Appointment.time, Appointment.date,Appointment.state FROM Location,Appointment"
+                    " WHERE (Location.id = Appointment.location_id) AND (Location.postOffice == :u_postOffice) ").params(u_postOffice = u_postOffice)
         res = db.engine.execute(stmt)
         response = []
         for row in res:
-            response.append({"id":row[0],"time":row[1], "date":row[2],"postOffice":row[3]})
+            response.append({"id":row[0],"time":row[1], "date":row[2],"state":row[3]})
+        return response
