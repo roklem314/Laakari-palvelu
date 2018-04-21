@@ -14,7 +14,7 @@
 - Ylläpito voi lisätä uuden vastaanottoajat(done)
 - Ylläpito voi rekisteröidä uuden lääkärin palveluun(done)
 - Lääkäri voi kirjautua palveluun(done)
--	Lääkäri voi päivittää omia tietojaan(next)
+-	Lääkäri voi päivittää omia tietojaan(done)
 - Ylläpito asettaa lääkärille vastaanottoajat(next)
 -	Lääkäri voi listata omat vastaanotto ajat(next)
 -	Lääkäri voi perua omia vastaanotto aikoja(undone)
