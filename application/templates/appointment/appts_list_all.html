@@ -1,0 +1,39 @@
+{% extends "auth/author.html" %}
+
+{% block body %}
+
+<div class="col-md-7 col-sm-6 home-banner-left">
+
+  <table class="table table-hover">
+    <h4>Käyttäjien listaus</h4>
+    <thead>
+      <tr>
+        <th scope="col">Aika</th>
+        <th scope="col">Päivämäärä</th>
+        <th scope="col">Varauksen tila</th>
+        <th scope="col">Osoite</th>
+        <th scope="col">Postinumero</th>
+        <th scope="col">Postitoimipaikka</th>
+      </tr>
+    </thead>
+
+    {% for aplo in all_appts_and_locations %}
+    <tr>
+
+        <td scope="col">{{ aplo.time }}</td>
+        <td scope="col">{{ aplo.date }}</td>
+        {% if aplo.state == False %}
+            <td bgcolor="green">{{ "Vapaa" }}
+        {% else %}
+            <td bgcolor="red">{{ "Varattu" }}
+        {% endif %}</td>
+        <td scope="col">{{ aplo.address }}</td>
+        <td scope="col">{{ aplo.postalCode }}</td>
+        <td scope="col">{{ aplo.postOffice }}</td>
+
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+
+{% endblock %}

@@ -59,3 +59,13 @@ class Location(Base):
             response.append({"name":row[0],"email":row[1],"address":row[2],"postalCode":row[3],"postOffice":row[4]})
 
         return response
+    @staticmethod
+    def find_all_appts_and_locations():
+        stmt = text("SELECT Appointment.time, Appointment.date, Appointment.state, Location.address,Location.postalCode,Location.postOffice FROM Location,Appointment"
+                    " WHERE (Location.id = Appointment.location_id)" )
+        res = db.engine.execute(stmt)
+        response = []
+        for row in res:
+            response.append({"time":row[0], "date":row[1],"state":row[2],"address":row[3],"postalCode":row[4],"postOffice":row[5]})
+
+        return response

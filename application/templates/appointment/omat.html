@@ -26,13 +26,14 @@
     <tr>
       <td>{{ appt.time }}</td>
       <td>{{ appt.date }}</td>
-    <td>{% if appt.state == True %}
-                  <form method="GET" action="{{ url_for('peru',uid= appt.id)}}">
-                   <input type="hidden" uid="{{appt.id}}">
-                      <button type="submit" class="btn btn-primary" value="Peru">Peru</button>
-                  </form>
-              {% else %} {{"Varattu"}}
-              {% endif %}</td>
+      {% if appt.state == True %}
+        <td><form method="GET" action="{{ url_for('peru',uid= appt.id)}}">
+            <input type="hidden" uid="{{appt.id}}">
+            <button type="submit" class="btn btn-primary" value="Peru">Peru</button>
+            </form></td>
+      {% else %}
+      <td bgcolor="red">{{ "Varattu" }}</td>
+      {% endif %}
 
       </tr>
     {% endfor %}

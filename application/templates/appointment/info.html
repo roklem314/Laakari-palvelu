@@ -29,13 +29,13 @@
       <td>{{ i.address}}</td>
       <td>{{ i.postalCode}}</td>
       <td>{{i.postOffice}}</td>
-      <td>{% if i.state == False %}
-              <form method="GET" action="{{ url_for('varaa',uid= i.id)}}">
+      {% if i.state == False %}
+            <td><form method="GET" action="{{ url_for('varaa',uid= i.id)}}">
                <input type="hidden" uid="{{i.id}}">
                <input type="submit" class="btn btn-primary"  value="Varaa">
-              </form>
+              </form></td>
           {% else %}
-            {{"Varattu"}}
+            <td bgcolor="red">{{ "Varattu" }}</td>
           {% endif %}</td>
 
       </tr>
