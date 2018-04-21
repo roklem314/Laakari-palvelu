@@ -11,6 +11,53 @@ from application.location.models import Location
 from application.location.models import Base
 # import bcrypt
 
+@app.route("/registration/modify_doctor",  methods = ['GET','POST'])
+@login_required
+def modify_doctor():
+    form = ModifyForm()
+    form2 = LocationForm()
+    if request.method == 'GET':
+
+        u = Users.query.filter_by(id = current_user.id).first()
+        u_home = Location.query.filter_by(id = u.loacation_id).first();
+        current_user.address = u_home.address
+        current_user.postalCode = u_home.postalCode
+        current_user.postOffice = u_home.postOffice
+
+        return render_template("registration/modify_doctor.html", form = ModifyForm(),form2 = LocationForm())
+
+    if request.method == 'POST':
+        u = Users.query.filter_by(id = current_user.id).first()
+        u_home = Location.query.filter_by(id = u.loacation_id).first();
+
+        if form.validate_on_submit():
+            new_name = form.name.data
+            new_addr = form2.address.data
+            new_postalC = form2.postalCode.data
+            new_postF = form2.postOffice.data
+            new_email = form.email.data
+            new_password = form.password.data
+
+            if new_name != u.name:
+                u.name = new_name
+            if new_addr != u_home.address:
+                u_home.address = new_addr
+            if new_postalC != u_home.address:
+                u_home.postalCode = new_postalC
+            if new_postF != u_home.postOffice:
+                u_home.postOffice = new_postF
+            if new_email != u.email:
+                u.email = new_email
+                # if not bcrypt.checkpw(form.password.data.encode("utf-8"), u.password):
+                #     u.password = bcrypt.hashpw(form.password.data.encode("utf-8"),bcrypt.gensalt())
+            if new_password != u.password:
+                u.password = new_password
+
+        db.session.commit()
+
+        flash('Tiedot päivitetty onnistuneesti!')
+        return render_template("doctor.html")
+
 @app.route('/register', methods=['GET', 'POST'])
 def register_user():
     form = RegistrationForm()
@@ -94,7 +141,6 @@ def modify():
         current_user.address = u_home.address
         current_user.postalCode = u_home.postalCode
         current_user.postOffice = u_home.postOffice
-
 
         return render_template("registration/modify.html", form = ModifyForm(),form2 = LocationForm())
 

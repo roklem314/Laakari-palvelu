@@ -28,7 +28,9 @@
 
             <div class="collapse navbar-collapse" id="navbarCollapse">
               <ul class="navbar-nav mr-auto">
-
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('modify_doctor') }} ">Muokkaa tietoja</a>
+                </li>
 
               <span  class="navbar-text">Kirjautunut nimellä {{ current_user.name }},tunniste:{{" DOCTOR"}}
                 <a class="nav-link" href="{{ url_for('logout') }} " style="align:left">Kirjaudu ulos</a>
