@@ -17,10 +17,10 @@
 -	Lääkäri voi päivittää omia tietojaan(done)
 - Ylläpito asettaa lääkärille vastaanottoajat(next)
 -	Lääkäri voi listata omat vastaanotto ajat(next)
--	Lääkäri voi perua omia vastaanotto aikoja(undone)
 - Lääkäri voi kirjata merkinnän käynnistä(undone)
 - Potilas voi tarkastella häneen liittyviä merkintöjä(undone)
 - Lääkäri voi hakea potilaaseen liittyviä aikaisempia käyntimerkintöjä(undone)
+-	Lääkäri voi perua omia vastaanottoaikoja(undone)
 - Ylläpito voi tarkastella kaikkia käyntimerkintöjä(undone)
 - Ylläpito voi poistaa käyttäjän(undone)
 
