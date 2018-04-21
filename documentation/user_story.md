@@ -12,12 +12,12 @@
 - Ylläpito voi listata kaikki palvelun käyttäjät
 - Ylläpito voi listata kaikki palvelussa olevat vastaanottoajat
 - Ylläpito voi lisätä uuden vastaanottoajat
-- Ylläpito voi poistaa käyttäjän
-- Ylläpito rekisteröi uuden lääkärin palveluun
-- Ylläpito asettaa lääkärille vastaanottoajat
+- Ylläpito voi rekisteröidä uuden lääkärin palveluun
 - Lääkäri voi kirjautua palveluun
+- Ylläpito asettaa lääkärille vastaanottoajat
 -	Lääkäri voi päivittää omia tietojaan
 -	Lääkäri voi listata omat vastaanotto ajat
+- Ylläpito voi poistaa käyttäjän
 -	Lääkäri voi perua omia vastaanotto aikoja
 - Lääkäri voi kirjata merkinnän käynnistä 
 - Potilas voi tarkastella häneen liittyviä merkintöjä
