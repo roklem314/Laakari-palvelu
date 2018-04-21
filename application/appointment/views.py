@@ -38,7 +38,7 @@ def appts_list():
         return render_template("appointment/list.html", appts = Appointment.query.all())
     return render_template("appointment/list.html", appts = Appointment.query.all(), nearest_locations=nearest_locations)
 
-@app.route("/author/appts_list_all", methods=["GET"])
+@app.route("/appointment/appts_list_all", methods=["GET"])
 @login_required
 def appts_list_all():
     all_appts_and_locations = Location.find_all_appts_and_locations()

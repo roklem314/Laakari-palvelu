@@ -23,10 +23,10 @@ def login():
         print(Users.roles(form.email.data))
         if any('ADMIN' in s for s in Users.roles(form.email.data)):
             login_user(u)
-            return render_template("auth/author.html")
+            return render_template("author.html")
         if any('DOCTOR' in s for s in Users.roles(form.email.data)):
             login_user(u)
-            return render_template("auth/doctor.html")
+            return render_template("doctor.html")
         else:
             login_user(u)
             return redirect(url_for("index"))

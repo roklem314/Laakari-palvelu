@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
   <html>
     <head>
@@ -28,9 +27,22 @@
 
             <div class="collapse navbar-collapse" id="navbarCollapse">
               <ul class="navbar-nav mr-auto">
-                
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('users_list') }} ">Näytä kaikki käyttäjät</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('appts_list_all') }} ">Vastaanotto aikojen listaus</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('add_new_appt') }} ">Lisää uusi vastaanottoaika</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('add_new_doctor') }} ">Lisää lääkäri</a>
+                </li>
 
-              <span  class="navbar-text">Kirjautunut nimellä {{ current_user.name }}
+              </ul>
+
+              <span  class="navbar-text">Kirjautunut nimellä {{ current_user.name }}, tunniste:{{" ADMIN"}}
                 <a class="nav-link" href="{{ url_for('logout') }} " style="align:left">Kirjaudu ulos</a>
             </span>
 
