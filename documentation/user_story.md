@@ -1,26 +1,26 @@
 # User storyt
 
-- Potilas voi rekisteröityä palveluun
-- Potilas voi kirjautua palveluun
-- Potilas voi päivittää omia tietojaan
--	Potilas voi listata vapaat vastaanotto ajat
--	Potilas voi varata vapaan vastaanotto ajan
--	Potilas voi perua varaamansa vastaanotto ajan
-- Potilas voi tarkastella valitsemaansa vastaanottoaikaa erillisellä info sivulla
-- Potilas näkee info sivulla vastaanottoajasta tarkempia tietoja kuten sijainnin ja voi varata ajan 
-- Ylläpito voi kirjautua palveluun 
-- Ylläpito voi listata kaikki palvelun käyttäjät
-- Ylläpito voi listata kaikki palvelussa olevat vastaanottoajat
-- Ylläpito voi lisätä uuden vastaanottoajat
-- Ylläpito voi rekisteröidä uuden lääkärin palveluun
-- Lääkäri voi kirjautua palveluun
-- Ylläpito asettaa lääkärille vastaanottoajat
--	Lääkäri voi päivittää omia tietojaan
--	Lääkäri voi listata omat vastaanotto ajat
-- Ylläpito voi poistaa käyttäjän
--	Lääkäri voi perua omia vastaanotto aikoja
-- Lääkäri voi kirjata merkinnän käynnistä 
-- Potilas voi tarkastella häneen liittyviä merkintöjä
-- Lääkäri voi hakea potilaaseen liittyviä aikaisempia käyntimerkintöjä
-- Ylläpito voi tarkastella kaikkia käyntimerkintöjä
+- Potilas voi rekisteröityä palveluun(done)
+- Potilas voi kirjautua palveluun(done)
+- Potilas voi päivittää omia tietojaan(done)
+-	Potilas voi listata vapaat vastaanotto ajat(done)
+-	Potilas voi varata vapaan vastaanotto ajan(done)
+-	Potilas voi perua varaamansa vastaanotto ajan(done)
+- Potilas voi tarkastella valitsemaansa vastaanottoaikaa erillisellä info sivulla(done)
+- Potilas näkee info sivulla vastaanottoajasta tarkempia tietoja kuten sijainnin ja voi varata ajan (done)
+- Ylläpito voi kirjautua palveluun (done)
+- Ylläpito voi listata kaikki palvelun käyttäjät(done)
+- Ylläpito voi listata kaikki palvelussa olevat vastaanottoajat(done)
+- Ylläpito voi lisätä uuden vastaanottoajat(done)
+- Ylläpito voi rekisteröidä uuden lääkärin palveluun(done)
+- Lääkäri voi kirjautua palveluun(done)
+-	Lääkäri voi päivittää omia tietojaan(next)
+- Ylläpito asettaa lääkärille vastaanottoajat(next)
+-	Lääkäri voi listata omat vastaanotto ajat(next)
+-	Lääkäri voi perua omia vastaanotto aikoja(undone)
+- Lääkäri voi kirjata merkinnän käynnistä(undone)
+- Potilas voi tarkastella häneen liittyviä merkintöjä(undone)
+- Lääkäri voi hakea potilaaseen liittyviä aikaisempia käyntimerkintöjä(undone)
+- Ylläpito voi tarkastella kaikkia käyntimerkintöjä(undone)
+- Ylläpito voi poistaa käyttäjän(undone)
 
