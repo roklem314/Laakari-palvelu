@@ -8,6 +8,7 @@ from application.role.forms import RoleForm
 from application.role.models import Role
 from application.location.forms import LocationForm
 from application.location.models import Location
+from application.location.models import Base
 # import bcrypt
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -123,3 +124,11 @@ def delete_user():
             flash('Poisto onnistui!')
 
         return redirect(url_for('logout'))
+
+# @app.route('/user_info', methods=['GET'])
+# def user_info():
+#     omat = Appointment.query.filter(current_user.id == Appointment.account_id).all()
+#     u_home = Location.query.filter(Users.id == u.loacation_id).first();
+#     # role = Role.query.filter(Role.id == current_user.id).first()
+#
+#     return render_template('/registration/user_info.html',omat,u_home)

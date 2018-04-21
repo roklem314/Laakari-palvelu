@@ -1,9 +1,10 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
-from flask_login import login_user, logout_user, current_user
+from flask_login import login_user, logout_user, current_user, login_required
 from application import app
 from application.registration.models import Users
 from application.appointment.models import Appointment
 from application.auth.forms import LoginForm
+from application.location.models import Location
 # import bcrypt
 
 @app.route("/login", methods = ["GET", "POST"])
@@ -19,10 +20,13 @@ def login():
         if u.password != form.password.data:
 
             return render_template("auth/login.html", form = form, error = "No such username or password")
-
-
-        login_user(u)
-        return redirect(url_for("index"))
+        print(Users.roles(form.email.data))
+        if any('ADMIN' in s for s in Users.roles(form.email.data)):
+            login_user(u)
+            return render_template("auth/author.html")
+        else:
+            login_user(u)
+            return redirect(url_for("index"))
 
 
     return render_template("auth/login.html", form = form)
@@ -32,3 +36,9 @@ def logout():
     logout_user()
     flash("Uloskirjautuminen onnistui!")
     return redirect(url_for("index"))
+
+@app.route("/auth/users_list", methods = ["GET", "POST"])
+@login_required
+def users_list():
+    u_all = Location.find_all_users_with_locations(current_user.email)
+    return render_template("auth/users_list.html",u_all=u_all)

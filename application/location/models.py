@@ -48,3 +48,14 @@ class Location(Base):
         for row in res:
             response.append({"id":row[0],"time":row[1], "date":row[2],"state":row[3]})
         return response
+
+    @staticmethod
+    def find_all_users_with_locations(author_email):
+        stmt = text("SELECT account.name,account.email, Location.address, Location.postalCode, Location.postOffice FROM Location,account"
+                    " WHERE (Location.id = account.id) AND (account.email != :author_email) ").params(author_email=author_email)
+        res = db.engine.execute(stmt)
+        response = []
+        for row in res:
+            response.append({"name":row[0],"email":row[1],"address":row[2],"postalCode":row[3],"postOffice":row[4]})
+
+        return response

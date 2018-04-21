@@ -1,0 +1,33 @@
+{% extends "auth/author.html" %}
+
+{% block body %}
+
+<div class="col-md-7 col-sm-6 home-banner-left">
+
+  <table class="table table-hover">
+    <h4>Käyttäjien listaus</h4>
+    <thead>
+      <tr>
+        <th scope="col">Nimi</th>
+        <th scope="col">Email</th>
+        <th scope="col">Osoite</th>
+        <th scope="col">Postinumero</th>
+        <th scope="col">Postitoimipaikka</th>
+      </tr>
+    </thead>
+
+    {% for u in u_all %}
+    <tr>
+
+        <td scope="col">{{ u.name }}</td>
+        <td scope="col">{{ u.email }}</td>
+        <td scope="col">{{u.address }}</td>
+        <td scope="col">{{u.postalCode }}</td>
+        <td scope="col">{{u.postOffice }}</td>
+
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+
+{% endblock %}

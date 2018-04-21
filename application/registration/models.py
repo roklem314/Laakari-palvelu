@@ -3,13 +3,8 @@ from flask_login import current_user
 from application.models import Base
 from application.role.forms import RoleForm
 from application.role.models import Role
+from sqlalchemy.sql import text
 
-
-
-#
-# @login.user_loader
-# def load_user(id):
-#     return User.query.get(int(id))
 
 class Users(Base):
     __tablename__ = "account"
@@ -38,6 +33,17 @@ class Users(Base):
 
     def is_authenticated(self):
         return True
+
+    @staticmethod
+    def roles(email):
+        stmt = text("SELECT Role.role FROM account,Role "
+                    " WHERE (account.id = Role.id) AND (account.email = :email) ").params(email = email)
+        res = db.engine.execute(stmt)
+        response = []
+        for row in res:
+            response.append({row[0]})
+
+        return response
 
 
     # def set_password(self, password):

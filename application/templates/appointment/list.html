@@ -79,7 +79,6 @@
 
           <td scope="col">{{ nearest.time }}</td>
           <td scope="col">{{ nearest.date }}</td>
-            {{nearest.state}}
           <td>{% if nearest.state == False %}
                 <form method="GET" action="{{ url_for('varaa',uid= nearest.id)}}">
                  <input type="hidden" uid="{{nearest.id}}">
