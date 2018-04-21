@@ -10,6 +10,9 @@
 - Potilas näkee info sivulla vastaanottoajasta tarkempia tietoja kuten sijainnin ja voi varata ajan 
 - Ylläpito voi kirjautua palveluun 
 - Ylläpito voi listata kaikki palvelun käyttäjät
+- Ylläpito voi listata kaikki palvelussa olevat vastaanottoajat
+- Ylläpito voi lisätä uuden ajan
+- Ylläpito voi poistaa käyttäjän
 - Ylläpito rekisteröi uuden lääkärin palveluun
 - Lääkäri voi kirjautua palveluun
 -	Lääkäri voi päivittää omia tietojaan
