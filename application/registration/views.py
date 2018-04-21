@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_login import login_required, current_user
 from application import app,db
-from application.registration.forms import RegistrationForm,ModifyForm,DeleteForm
+from application.registration.forms import RegistrationForm,ModifyForm,DeleteForm,DoctorRegistrationForm
 from application.registration.models import Users
 from application.appointment.models import Appointment
 from application.role.forms import RoleForm
@@ -44,6 +44,42 @@ def register_user():
             flash('Rekisteröityminen onnistui, voit kirjautua palveluun!')
             return redirect(url_for('login'))
         return render_template('/registration/register.html',form = form)
+
+
+@app.route('/register/add_new_doctor', methods=['GET', 'POST'])
+@login_required
+def add_new_doctor():
+    form = DoctorRegistrationForm()
+
+    if request.method == 'GET':
+        return render_template('/registration/register_doctor.html',form = DoctorRegistrationForm())
+
+    if request.method == 'POST':
+
+        if form.validate_on_submit():
+            # u = Users(name=form.name.data, address=form.address.data, email=form.email.data,password = bcrypt.hashpw(form.password.data.encode("utf-8"),bcrypt.gensalt()))
+            u_home = Location(address = form.address.data,postalCode= form.postalCode.data,postOffice=form.postOffice.data)
+            db.session.add(u_home)
+            db.session.commit()
+
+            u = Users(name=form.name.data,email=form.email.data,password = "doctor1234")
+            u.loacation_id = u_home.id
+            db.session.add(u)
+            db.session.commit()
+
+            u_role = Role(role = "DOCTOR")
+            db.session.add(u_role)
+            db.session.commit()
+            # u_home.u_location = u.id
+
+            db.session.commit()
+
+
+            flash('Uusi lääkäri lisätty palveluun!')
+            return redirect(url_for('users_list'))
+        return render_template('/registration/register_doctor.html',form = DoctorRegistrationForm())
+
+
 
 
 @app.route("/registration/modify",  methods = ['GET', 'POST'])

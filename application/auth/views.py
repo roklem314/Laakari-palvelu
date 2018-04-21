@@ -24,6 +24,9 @@ def login():
         if any('ADMIN' in s for s in Users.roles(form.email.data)):
             login_user(u)
             return render_template("auth/author.html")
+        if any('DOCTOR' in s for s in Users.roles(form.email.data)):
+            login_user(u)
+            return render_template("auth/doctor.html")
         else:
             login_user(u)
             return redirect(url_for("index"))
@@ -37,7 +40,7 @@ def logout():
     flash("Uloskirjautuminen onnistui!")
     return redirect(url_for("index"))
 
-@app.route("/auth/users_list", methods = ["GET", "POST"])
+@app.route("/auth/users_list", methods = ["GET"])
 @login_required
 def users_list():
     u_all = Location.find_all_users_with_locations(current_user.email)

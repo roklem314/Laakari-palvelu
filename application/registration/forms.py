@@ -68,3 +68,22 @@ class DeleteForm(FlaskForm):
 
     class Meta:
         csrf = False
+
+class DoctorRegistrationForm(FlaskForm):
+    name = StringField('Nimi',validators=[DataRequired("Nimi on pakollinnen!")])
+    address = StringField('Osoite', validators=[DataRequired("Osoite on pakollinnen!")])
+    postalCode = StringField('Postinumero',validators=[DataRequired("Postinumero on pakollinen")])
+    postOffice = StringField('Postitoimipaikka',validators=[DataRequired("Postinumero on pakollinen")])
+    email = StringField('Email', validators=[DataRequired("Sähköposti on pakollinnen!"), Email("Tarkista sähköposti osoite!")])
+
+    def validate_email(self, email):
+        u = Users.query.filter_by(email=email.data).first()
+        if u is not None:
+            raise ValidationError('Sähköposti osoite on jo käytössä!.')
+    # def validate_role(self, gender):
+    #     if gender is not null:
+    #         raise ValidationError('Valinta puuttuu!.')
+
+
+    class Meta:
+        csrf = False
