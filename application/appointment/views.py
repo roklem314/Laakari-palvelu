@@ -3,7 +3,7 @@ from flask import Flask, redirect, render_template, request, url_for,redirect, f
 from flask_login import login_required, current_user
 
 from application.appointment.models import Appointment
-from application.appointment.forms import AppointmentForm
+from application.appointment.forms import AppointmentForm,NewAppointmentForm
 from application.registration.models import Users
 
 from application.location.forms import LocationForm
@@ -81,21 +81,27 @@ def peru(uid: int):
 #
 #     return render_template("appointment/addnew.html", form = AppointmentForm())
 
-# @app.route("/appointment/", methods=["POST"])
-# @login_required
-# def new_appt():
-#     # form = AppointmentForm(request.form)
-#
-#     anew = Appointment(form.time.data, form.date.data)
-#     # a.account_id = current_user.id
-#
-#     # if not form.validate():
-#     #     return render_template("appointment/addnew.html", form = form)
-#
-#     db.session().add(anew)
-#     db.session().commit()
-#
-#     return redirect(url_for('appts_list'))
+@app.route("/appointment/add_new_appt", methods=['GET','POST'])
+@login_required
+def add_new_appt():
+    form = NewAppointmentForm()
+
+    if request.method == 'GET':
+
+        return render_template("appointment/add_new_appt.html", form = form)
+
+    if request.method == 'POST':
+
+        new_appt= Appointment(form.time.data, form.date.data,False)
+        new_location = Location(form.address.data, form.postalCode.data, form.postOffice.data)
+        db.session().add(new_location)
+        db.session().commit()
+
+        new_appt.location_id = new_location.id
+        db.session().add(new_appt)
+        db.session().commit()
+
+    return redirect(url_for('appts_list_all'))
 
 @app.route("/appointment/omat",methods= ['GET'])
 @login_required
