@@ -5,6 +5,7 @@ from application.registration.models import Users
 from application.appointment.models import Appointment
 from application.auth.forms import LoginForm
 from application.location.models import Location
+from application.role.models import Role
 # import bcrypt
 
 @app.route("/login", methods = ["GET", "POST"])

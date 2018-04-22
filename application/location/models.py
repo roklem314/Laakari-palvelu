@@ -51,12 +51,12 @@ class Location(Base):
 
     @staticmethod
     def find_all_users_with_locations(author_email):
-        stmt = text("SELECT account.name,account.email, Location.address, Location.postalCode, Location.postOffice FROM Location,account"
-                    " WHERE (Location.id = account.id) AND (account.email != :author_email) ").params(author_email=author_email)
+        stmt = text("SELECT account.name,account.email, Location.address, Location.postalCode, Location.postOffice ,Role.role FROM Location,account,Role"
+                    " WHERE (Location.id = account.id) AND (Role.id = account.id) AND (account.email != :author_email) ").params(author_email=author_email)
         res = db.engine.execute(stmt)
         response = []
         for row in res:
-            response.append({"name":row[0],"email":row[1],"address":row[2],"postalCode":row[3],"postOffice":row[4]})
+            response.append({"name":row[0],"email":row[1],"address":row[2],"postalCode":row[3],"postOffice":row[4],"role":row[5]})
 
         return response
     @staticmethod
