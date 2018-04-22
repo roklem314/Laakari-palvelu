@@ -1,49 +1,49 @@
-{% extends "layout.html" %}
-
-{% block body %}
+ {% extends "layout.html" %} {% block body %}
 <div class="container">
-    <h4>Info</h4>
+  <h4>Info</h4>
 </div>
 
 <div class="container">
-      <div class="row">
+  <div class="row">
     <div class="col-md-auto">
 
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">Aika</th>
-      <th scope="col">Päivämäärä</th>
-      <th scope="col">Tila</th>
-      <th scope="col">Osoite</th>
-      <th scope="col">Postinumero</th>
-      <th scope="col">Postitoimipaikka</th>
-    </tr>
-  </thead>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Aika</th>
+            <th scope="col">Päivämäärä</th>
+            <th scope="col">Tila</th>
+            <th scope="col">Osoite</th>
+            <th scope="col">Postinumero</th>
+            <th scope="col">Postitoimipaikka</th>
+          </tr>
+        </thead>
 
-    {% for i in t_location%}
-    <tbody>
-    <tr>
-      <td>{{ i.time }}</td>
-      <td>{{ i.date }}</td>
-      <td>{{ i.address}}</td>
-      <td>{{ i.postalCode}}</td>
-      <td>{{i.postOffice}}</td>
-      {% if i.state == False %}
-            <td><form method="GET" action="{{ url_for('varaa',uid= i.id)}}">
-               <input type="hidden" uid="{{i.id}}">
-               <input type="submit" class="btn btn-primary"  value="Varaa">
-              </form></td>
-          {% else %}
+        {% for i in t_location%}
+        <tbody>
+          <tr>
+            <td>{{ i.time }}</td>
+            <td>{{ i.date }}</td>
+            <td>{{ i.address}}</td>
+            <td>{{ i.postalCode}}</td>
+            <td>{{i.postOffice}}</td>
+            {% if i.state == False %}
+            <td>
+              <form method="GET" action="{{ url_for('varaa',uid= i.id)}}">
+                <input type="hidden" uid="{{i.id}}">
+                <input type="submit" class="btn btn-primary" value="Varaa">
+              </form>
+            </td>
+            {% else %}
             <td bgcolor="red">{{ "Varattu" }}</td>
-          {% endif %}</td>
+            {% endif %}</td>
 
-      </tr>
-    {% endfor %}
-   </tbody>
+          </tr>
+          {% endfor %}
+        </tbody>
 
-  </table>
- </div>
-</div>
+      </table>
+    </div>
+  </div>
 </div>
 {% endblock %}

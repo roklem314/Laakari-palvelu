@@ -1,10 +1,8 @@
-{% extends "layout.html" %}
-
-{% block body %}
+ {% extends "layout.html" %} {% block body %}
 <!-- <div class="container"> -->
 <div class="home-banner clearfix">
 
-    <div class="row">
+  <div class="row">
     <!-- <div class="col-md-auto"> -->
 
     <div class="col-md-7 col-sm-6 home-banner-left">
@@ -22,21 +20,25 @@
 
         {% for appt in appts%}
         <tr>
-            <!-- <td>{{ appt.id }}</td> -->
-            <td scope="col">{{ appt.time }}</td>
-            <td scope="col">{{ appt.date }}</td>
-            {% if appt.state == False %}
-                  <td><form method="GET" action="{{ url_for('varaa',uid= appt.id)}}">
-                   <input type="hidden" uid="{{appt.id}}">
-                   <button type="submit" class="btn btn-primary" value="Varaa">Varaa</button></td>
-                  </form></td>
-            {% else %}
-                  <td bgcolor="red">{{ "Varattu" }}</td>
-            {% endif %}
-            <td><form method="GET" action="{{ url_for('info',uid= appt.id)}}">
+          <!-- <td>{{ appt.id }}</td> -->
+          <td scope="col">{{ appt.time }}</td>
+          <td scope="col">{{ appt.date }}</td>
+          {% if appt.state == False %}
+          <td>
+            <form method="GET" action="{{ url_for('varaa',uid= appt.id)}}">
+              <input type="hidden" uid="{{appt.id}}">
+              <button type="submit" class="btn btn-primary" value="Varaa">Varaa</button></td>
+          </form>
+          </td>
+          {% else %}
+          <td bgcolor="red">{{ "Varattu" }}</td>
+          {% endif %}
+          <td>
+            <form method="GET" action="{{ url_for('info',uid= appt.id)}}">
               <input type="hidden" uid="{{appt.id}}">
 
-              <button type="submit" class="btn btn-primary" value="Info">Info</button></td></form>
+              <button type="submit" class="btn btn-primary" value="Info">Info</button></td>
+          </form>
 
         </tr>
         {% endfor %}
@@ -46,36 +48,40 @@
     <div class="col-md-5 col-sm-6 home-banner-right">
       <table class="table table-hover">
         <h4>Valitse lähin vastaanotto</h4>
-       <thead>
+        <thead>
+          <tr>
+            <th scope="col">Aika</th>
+            <th scope="col">Päivämäärä</th>
+            <th scope="col">Varauksen tila</th>
+            <th scope="col">info</th>
+          </tr>
+        </thead>
+
+        {% for nearest in nearest_locations %}
         <tr>
-          <th scope="col">Aika</th>
-          <th scope="col">Päivämäärä</th>
-          <th scope="col">Varauksen tila</th>
-          <th scope="col">info</th>
-        </tr>
-       </thead>
 
-      {% for nearest in nearest_locations %}
-      <tr>
-
-        <td scope="col">{{ nearest.time }}</td>
-        <td scope="col">{{ nearest.date }}</td>
-        {% if nearest.state == False %}
-            <td><form method="GET" action="{{ url_for('varaa',uid= nearest.id)}}">
-               <input type="hidden" uid="{{nearest.id}}">
+          <td scope="col">{{ nearest.time }}</td>
+          <td scope="col">{{ nearest.date }}</td>
+          {% if nearest.state == False %}
+          <td>
+            <form method="GET" action="{{ url_for('varaa',uid= nearest.id)}}">
+              <input type="hidden" uid="{{nearest.id}}">
               <button type="submit" class="btn btn-primary" value="Varaa">Varaa</button>
-              </form></td>
-        {% else %}
+            </form>
+          </td>
+          {% else %}
           <td bgcolor="red">{{ "Varattu" }}</td>
-        {% endif %}
-          <td><form method="GET" action="{{ url_for('info',uid= nearest.id)}}">
-            <input type="hidden" uid="{{nearest.id}}">
+          {% endif %}
+          <td>
+            <form method="GET" action="{{ url_for('info',uid= nearest.id)}}">
+              <input type="hidden" uid="{{nearest.id}}">
 
-            <button type="submit" class="btn btn-primary" value="Info">Info</button></form></td>
+              <button type="submit" class="btn btn-primary" value="Info">Info</button></form>
+          </td>
 
-      </tr>
-      {% endfor %}
-        </table>
+        </tr>
+        {% endfor %}
+      </table>
     </div>
 
   </div>
