@@ -1,8 +1,9 @@
 # FullCare
-FullCare on Web-palvelu, jossa asiakas voi varata vastaanotto ajan lääkärille. Vastaanottoaikoja on tarjolla useilla eri paikkakunnilla. Palvelun käyttäminen edellyttää rekisteröitymistä.
+FullCare is appointment booking service. 
+Using the service requires registration. 
 
-[Linkki sovellukseen Herokussa.](https://fullcure-app.herokuapp.com)
+[Link to the Heroku application.](https://fullcure-app.herokuapp.com)
 
-[Linkki käyttötapauksiin](https://github.com/roklem314/Laakari-palvelu/blob/master/documentation/user_story.md)
+[Link to the user stories](https://github.com/roklem314/Laakari-palvelu/blob/master/documentation/user_story.md)
 
-[Linkki tietokantakaavioon](https://github.com/roklem314/Laakari-palvelu/blob/master/documentation/Tietokanta%20kaavio.jpg)
+[Link to the database schema](https://github.com/roklem314/Laakari-palvelu/blob/master/documentation/Tietokanta%20kaavio.jpg)
