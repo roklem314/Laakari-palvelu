@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_login import login_required, current_user
-from application import app,db
+from application import app, db, login_required_role_based
 from application.registration.forms import RegistrationForm,ModifyForm,DeleteForm,DoctorRegistrationForm
 from application.registration.models import Users
 from application.appointment.models import Appointment
@@ -12,7 +12,7 @@ from application.location.models import Base
 # import bcrypt
 
 @app.route("/registration/modify_doctor",  methods = ['GET','POST'])
-@login_required
+@login_required_role_based('DOCTOR')
 def modify_doctor():
     form = ModifyForm()
     form2 = LocationForm()
@@ -80,7 +80,7 @@ def register_user():
             db.session.add(u)
             db.session.commit()
 
-            u_role = Role(role = form.role.data)
+            u_role = Role("POTILAS")
             db.session.add(u_role)
             db.session.commit()
             # u_home.u_location = u.id
@@ -94,7 +94,7 @@ def register_user():
 
 
 @app.route('/register/add_new_doctor', methods=['GET', 'POST'])
-@login_required
+@login_required_role_based('ADMIN')
 def add_new_doctor():
     form = DoctorRegistrationForm()
 
@@ -134,13 +134,13 @@ def add_new_doctor():
 def modify():
     form = ModifyForm()
     form2 = LocationForm()
-    if request.method == 'GET':
+    u = Users.query.filter_by(id = current_user.id).first()
+    u_home = Location.query.filter_by(id = u.loacation_id).first();
+    current_user.address = u_home.address
+    current_user.postalCode = u_home.postalCode
+    current_user.postOffice = u_home.postOffice
 
-        u = Users.query.filter_by(id = current_user.id).first()
-        u_home = Location.query.filter_by(id = u.loacation_id).first();
-        current_user.address = u_home.address
-        current_user.postalCode = u_home.postalCode
-        current_user.postOffice = u_home.postOffice
+    if request.method == 'GET':
 
         return render_template("registration/modify.html", form = ModifyForm(),form2 = LocationForm())
 
@@ -154,7 +154,8 @@ def modify():
             new_postalC = form2.postalCode.data
             new_postF = form2.postOffice.data
             new_email = form.email.data
-            new_password = form.password.data
+            # password = form.password.data
+            # password2 = form.password2.data
 
             if new_name != u.name:
                 u.name = new_name
@@ -168,13 +169,15 @@ def modify():
                 u.email = new_email
                 # if not bcrypt.checkpw(form.password.data.encode("utf-8"), u.password):
                 #     u.password = bcrypt.hashpw(form.password.data.encode("utf-8"),bcrypt.gensalt())
-            if new_password != u.password:
-                u.password = new_password
+            # if new_password != u.password:
+            #     u.password = new_password
 
-        db.session.commit()
+            db.session.commit()
 
-        flash('Tiedot päivitetty onnistuneesti!')
-        return redirect(url_for('index'))
+            flash('Tiedot päivitetty onnistuneesti!')
+            return redirect(url_for('index'))
+
+        return render_template("registration/modify.html", form = form,form2 = form2)
 
 
 @app.route("/registration/delete_user", methods = ['GET','POST'])
@@ -200,12 +203,12 @@ def delete_user():
                 db.session().commit()
 
 
-            db.sesion.delete(u_home)
+            db.session.delete(u_home)
             db.session.delete(u)
             db.session.commit()
             flash('Poisto onnistui!')
-
-        return redirect(url_for('logout'))
+            return redirect(url_for('logout'))
+    return render_template('/registration/delete.html',form = form)
 
 # @app.route('/user_info', methods=['GET'])
 # def user_info():

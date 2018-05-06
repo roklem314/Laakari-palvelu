@@ -12,11 +12,11 @@ class AppointmentForm(FlaskForm):
         csrf = False
 
 class NewAppointmentForm(FlaskForm):
-    time = StringField("Aika")
-    date = StringField("Päivämäärä")
-    address = StringField('Osoite',validators=[DataRequired("Osoite on pakollinen")])
-    postalCode = IntegerField('Postinumero',validators=[DataRequired("Postinumero on pakollinen")])
-    postOffice = StringField('Postitoimipaikka',validators=[DataRequired("Postitoimipaikka on pakollinen")])
+    time = StringField("time", validators=[DataRequired('Time is mandatory!')])
+    date = StringField("Date", validators=[DataRequired('Date is mandatory!')])
+    address = StringField('Address', validators=[DataRequired('Address is mandatory!')])
+    postalCode = StringField('Postalcode',validators=[DataRequired('Postalcode is mandatory!')])
+    postOffice = StringField('Postoffice',validators=[DataRequired('Postoffice is mandatory!')])
 
     class Meta:
         csrf = False

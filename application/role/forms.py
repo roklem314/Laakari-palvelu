@@ -8,7 +8,7 @@ from application.role.models import Role
 
 class RoleForm(FlaskForm):
 
-    role = StringField('Rooli',validators=[DataRequired("Osoite on pakollinen")])
+    role = StringField('Role',validators=[DataRequired("Role is mandatory!")])
 
     class Meta:
         csrf = False

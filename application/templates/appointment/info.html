@@ -10,12 +10,12 @@
       <table class="table table-hover">
         <thead>
           <tr>
-            <th scope="col">Aika</th>
-            <th scope="col">Päivämäärä</th>
-            <th scope="col">Tila</th>
-            <th scope="col">Osoite</th>
-            <th scope="col">Postinumero</th>
-            <th scope="col">Postitoimipaikka</th>
+            <th scope="col">Time</th>
+            <th scope="col">Date</th>
+            <th scope="col">Reservation status</th>
+            <th scope="col">Address</th>
+            <th scope="col">Postalcode</th>
+            <th scope="col">Postoffice</th>
           </tr>
         </thead>
 
@@ -31,11 +31,11 @@
             <td>
               <form method="GET" action="{{ url_for('varaa',uid= i.id)}}">
                 <input type="hidden" uid="{{i.id}}">
-                <input type="submit" class="btn btn-primary" value="Varaa">
+                <input type="submit" class="btn btn-primary" value="Book">
               </form>
             </td>
             {% else %}
-            <td bgcolor="red">{{ "Varattu" }}</td>
+            <td bgcolor="red">{{ "Booked" }}</td>
             {% endif %}</td>
 
           </tr>

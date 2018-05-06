@@ -34,6 +34,9 @@ class Users(Base):
     def is_authenticated(self):
         return True
 
+    # def role(self):
+    #     return role
+
     @staticmethod
     def roles(email):
         stmt = text("SELECT Role.role FROM account,Role "

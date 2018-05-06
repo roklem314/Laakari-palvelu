@@ -1,6 +1,4 @@
-{% extends "author.html" %}
-
-{% block body %}
+{% extends "author.html" %} {% block body %}
 
 <!-- {% with messages = get_flashed_messages() %}
 {% if messages %}
@@ -11,49 +9,34 @@
   </ul>
 {% endif %}
 {% endwith %} -->
-    <h3>Rekisteröi uusi lääkäri</h3>
-    <form method="POST"  action="{{ url_for('add_new_doctor')}}" >
+<h3>Register a new doctor</h3>
+<form method="POST" action="{{ url_for('add_new_doctor')}}">
 
-<form>
+  <form>
     <div class="form-group">
-            {{ form.name.label }}<br>
-            {{ form.name(size=20) }}<br>
-            {% for error in form.name.errors %}
-            <span style="color: red;">{{ error }}</span>
-            {% endfor %}
+      {{ form.name.label }}<br> {{ form.name(size=20) }}<br> {% for error in form.name.errors %}
+      <span style="color: red;">{{ error }}</span> {% endfor %}
     </div>
     <div class="form-group">
-            {{ form.address.label }}<br>
-            {{ form.address(size=20) }}<br>
-            {% for error in form.address.errors %}
-            <span style="color: red;">{{ error }}</span>
-            {% endfor %}
-   </div>
-   <div class="form-group">
-            {{ form.postalCode.label }}<br>
-            {{ form.postalCode(size=20) }}<br>
-            {% for error in form.postalCode.errors %}
-            <span style="color: red;">{{ error }}</span>
-            {% endfor %}
-   </div>
-   <div class="form-group">
-            {{ form.postOffice.label }}<br>
-            {{ form.postOffice(size=20) }}<br>
-            {% for error in form.postOffice.errors %}
-            <span style="color: red;">{{ error }}</span>
-            {% endfor %}
+      {{ form.address.label }}<br> {{ form.address(size=20) }}<br> {% for error in form.address.errors %}
+      <span style="color: red;">{{ error }}</span> {% endfor %}
+    </div>
+    <div class="form-group">
+      {{ form.postalCode.label }}<br> {{ form.postalCode(size=20) }}<br> {% for error in form.postalCode.errors %}
+      <span style="color: red;">{{ error }}</span> {% endfor %}
+    </div>
+    <div class="form-group">
+      {{ form.postOffice.label }}<br> {{ form.postOffice(size=20) }}<br> {% for error in form.postOffice.errors %}
+      <span style="color: red;">{{ error }}</span> {% endfor %}
 
-   </div>
+    </div>
 
-   <div class="form-group">
-            {{ form.email.label }}<br>
-            {{ form.email(size=20) }}<br>
-            {% for error in form.email.errors %}
-            <span style="color: red;">{{ error }}</span>
-            {% endfor %}
+    <div class="form-group">
+      {{ form.email.label }}<br> {{ form.email(size=20) }}<br> {% for error in form.email.errors %}
+      <span style="color: red;">{{ error }}</span> {% endfor %}
     </div>
 
 
-        <button type="submit" class="btn btn-primary" value="Vahvista rekisteröityminen"/>Vahvista</button>
-    </form>
-{% endblock %}
+    <button type="submit" class="btn btn-primary" value="Confirm" />Confirm</button>
+  </form>
+  {% endblock %}

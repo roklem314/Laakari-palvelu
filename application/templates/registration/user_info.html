@@ -2,23 +2,23 @@
 
 {% block body %}
 <div class="container">
-    <h4>Omat ajat</h4>
+    <h4>My appointments</h4>
 </div>
 
 <div class="container">
       <div class="row">
     <div class="col-md-auto">
-      
+
 
 <table class="table table-hover">
   <thead>
     <tr>
-      <th scope="col">Aika</th>
-      <th scope="col">Päivämäärä</th>
+      <th scope="col">Time</th>
+      <th scope="col">Date</th>
       <!-- <th scope="col">Osoite</th>
       <th scope="col">Postinumero</th>
       <th scope="col">Postitoimipaikka</th> -->
-      <th scope="col">Oma varaus</th>
+      <th scope="col">My booking</th>
     </tr>
   </thead>
 
@@ -30,9 +30,9 @@
     <td>{% if appt.state == True %}
                   <form method="GET" action="{{ url_for('peru',uid= appt.id)}}">
                    <input type="hidden" uid="{{appt.id}}">
-                      <button type="submit" class="btn btn-primary" value="Peru">Peru</button>
+                      <button type="submit" class="btn btn-primary" value="Cancel the reception time">Cancel the reception time</button>
                   </form>
-              {% else %} {{"Varattu"}}
+              {% else %} {{"reserved"}}
               {% endif %}</td>
 
       </tr>

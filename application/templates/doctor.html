@@ -20,16 +20,16 @@
 
   <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
     <a class="navbar-brand" href="{{ url_for('index') }}">
-          <img src="{{ url_for('static', filename = 'klogo2.png') }}" width="190" height="40" class="d-inline-block align-top" alt="FullCare">FullCare ajanvarauspalvelu</a>
+          <img src="{{ url_for('static', filename = 'klogo2.png') }}" width="190" height="40" class="d-inline-block align-top" alt="FullCare">FullCare appointment booking service</a>
 
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('modify_doctor') }} ">Muokkaa tietoja</a>
+          <a class="nav-link" href="{{ url_for('modify_doctor') }} ">Edit your information</a>
         </li>
 
-        <span class="navbar-text">Kirjautunut nimellä {{ current_user.name }},tunniste:{{" DOCTOR"}}
-                <a class="nav-link" href="{{ url_for('logout') }} " style="align:left">Kirjaudu ulos</a>
+        <span class="navbar-text">Logged in {{ current_user.name,  current_user.roles(current_user.email)}}
+                <a class="nav-link" href="{{ url_for('logout') }} " style="align:left">Logout</a>
             </span>
 
     </div>
@@ -44,10 +44,10 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('login') }} ">Kirjaudu</a>
+          <a class="nav-link" href="{{ url_for('login') }} ">Login</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('register_user') }} ">Rekisteröidy</a>
+          <a class="nav-link" href="{{ url_for('register_user') }} ">Register</a>
         </li>
       </ul>
 
@@ -70,6 +70,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
-</body>
+<div id="">
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+    <img src="{{ url_for('static', filename = 'klogo2.png') }}" width="190" height="40" class="d-inline-block align-top" alt="FullCare"></a>
+  </nav>
+</div>
 
 </html>

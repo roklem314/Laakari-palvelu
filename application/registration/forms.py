@@ -7,55 +7,59 @@ from application.registration.models import Users
 
 
 class RegistrationForm(FlaskForm):
-    name = StringField('Nimi',validators=[DataRequired("Nimi on pakollinnen!")])
-    role = StringField('Rooli',validators=[DataRequired("Kenttä on pakollinnen!")])
+    name = StringField('Name',validators=[DataRequired('Name is mandatory!')])
     # gender = RadioField('Sukupuoli', choices=[('value1','muu'),('value2','nainen'),('value2','mies')],validators=[DataRequired("Valinta on pakollinen!")])
-    address = StringField('Osoite', validators=[DataRequired("Osoite on pakollinnen!")])
-    postalCode = StringField('Postinumero',validators=[DataRequired("Postinumero on pakollinen")])
-    postOffice = StringField('Postitoimipaikka',validators=[DataRequired("Postinumero on pakollinen")])
-    email = StringField('Email', validators=[DataRequired("Sähköposti on pakollinnen!"), Email("Tarkista sähköposti osoite!")])
-    password = PasswordField('Salasana',validators=[DataRequired("Salasana on pakollinen!")])
-    password2 = PasswordField('Salasana', validators=[DataRequired("Anna salasana uudelleen!"),EqualTo("password")])
+    address = StringField('Address', validators=[DataRequired('Address is mandatory!')])
+    postalCode = StringField('Postalcode',validators=[DataRequired('Postalcode is mandatory!')])
+    postOffice = StringField('Postoffice',validators=[DataRequired('Postoffice is mandatory!')])
+    email = StringField('Email', validators=[DataRequired('Email is mandatory!'), Email("Please check your email!")])
+    password = PasswordField('Password',validators=[DataRequired('Password is mandatory!')])
+    password2 = PasswordField('Password again', validators=[DataRequired('Please give password again!'),EqualTo("password")])
 
     def validate_email(self, email):
         u = Users.query.filter_by(email=email.data).first()
         if u is not None:
-            raise ValidationError('Sähköposti osoite on jo käytössä!.')
+            raise ValidationError('Email address is already in use!')
     # def validate_role(self, gender):
     #     if gender is not null:
     #         raise ValidationError('Valinta puuttuu!.')
 
     def validate_password(self,password):
-
         if len(password.data) < 8:
-            raise ValidationError('Salasanan täytyy olla vähintään 8 merkkiä!')
+            raise ValidationError('Password must be at least 8 characters!')
 
     class Meta:
         csrf = False
 
 class ModifyForm(FlaskForm):
-    name = StringField('Nimi',validators=[DataRequired("Nimi on pakollinnen!")])
-    email = StringField('Email', validators=[DataRequired("Sähköposti on pakollinnen!"), Email("Tarkista sähköposti osoite!")])
-    password = PasswordField('Salasana',validators=[DataRequired("Salasana on pakollinen!")])
-    password2 = PasswordField('Toista salasana', validators=[DataRequired("Anna salasana uudelleen!"),EqualTo("password")])
+    name = StringField('Name',validators=[DataRequired('Name is mandatory!')])
+    email = StringField('Email', validators=[DataRequired('Email is mandatory!'), Email("Please check your email!")])
+    password = PasswordField('Password',validators=[DataRequired('Password is mandatory!')])
+    password2 = PasswordField('Password again', validators=[DataRequired('Please give password again!'),EqualTo("password")])
 
     def validate_email_password(self, email):
         u = Users.query.filter_by(email=email.data).first()
         if u is not None:
             if u.email != current_user.email:
-                raise ValidationError('Sähköposti osoite on jo käytössä!.')
+                raise ValidationError('Email address is already in use!')
 
     def validate_password(self,password):
-
+        u = Users.query.filter_by(email=current_user.email).first()
+        # if  0 == u.check_password(password.data):
+        # time.sleep(10)
+        # if not bcrypt.checkpw(password.data.encode("utf-8"), u.password):
         if len(password.data) < 8:
-            raise ValidationError('Salasanan täytyy olla vähintään 8 merkkiä!')
+            raise ValidationError('Password must be at least 8 characters!')
+        if (u.password != password.data):
+            raise ValidationError('Password is invalid!')
+
 
     class Meta:
         csrf = False
 
 class DeleteForm(FlaskForm):
-    password = PasswordField('Salasana',validators=[DataRequired("Salasana on pakollinen!")])
-    password2 = PasswordField('Toista salasana', validators=[DataRequired("Anna salasana uudelleen!"),EqualTo("password")])
+    password = PasswordField('Confirm by entering a password',validators=[DataRequired("Password is mandatory!")])
+    password2 = PasswordField('Password again', validators=[DataRequired('Please give password again!'),EqualTo("password")])
 
     def validate_password(self,password):
         u = Users.query.filter_by(email=current_user.email).first()
@@ -63,23 +67,23 @@ class DeleteForm(FlaskForm):
         # time.sleep(10)
         # if not bcrypt.checkpw(password.data.encode("utf-8"), u.password):
         if not (u.password == password.data):
-            raise ValidationError('Salasanan on virheellinen!')
+            raise ValidationError('Password is invalid!')
 
 
     class Meta:
         csrf = False
 
 class DoctorRegistrationForm(FlaskForm):
-    name = StringField('Nimi',validators=[DataRequired("Nimi on pakollinnen!")])
-    address = StringField('Osoite', validators=[DataRequired("Osoite on pakollinnen!")])
-    postalCode = StringField('Postinumero',validators=[DataRequired("Postinumero on pakollinen")])
-    postOffice = StringField('Postitoimipaikka',validators=[DataRequired("Postinumero on pakollinen")])
-    email = StringField('Email', validators=[DataRequired("Sähköposti on pakollinnen!"), Email("Tarkista sähköposti osoite!")])
+    name = StringField('Name',validators=[DataRequired('Name is mandatory!')])
+    address = StringField('Address', validators=[DataRequired('Address is mandatory!')])
+    postalCode = StringField('Postalcode',validators=[DataRequired('Postalcode is mandatory!')])
+    postOffice = StringField('Postoffice',validators=[DataRequired('Postoffice is mandatory!')])
+    email = StringField('Email', validators=[DataRequired('Email is mandatory!'), Email("Please check your email!")])
 
     def validate_email(self, email):
         u = Users.query.filter_by(email=email.data).first()
         if u is not None:
-            raise ValidationError('Sähköposti osoite on jo käytössä!.')
+            raise ValidationError('Email address is already in use!')
     # def validate_role(self, gender):
     #     if gender is not null:
     #         raise ValidationError('Valinta puuttuu!.')

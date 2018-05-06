@@ -7,9 +7,9 @@ from application.registration.models import Users
 
 
 class LocationForm(FlaskForm):
-    address = StringField('Osoite',validators=[DataRequired("Osoite on pakollinen")])
-    postalCode = IntegerField('Postinumero',validators=[DataRequired("Postinumero on pakollinen")])
-    postOffice = StringField('Postitoimipaikka',validators=[DataRequired("Postitoimipaikka on pakollinen")])
+    address = StringField('Address', validators=[DataRequired('Address is mandatory!')])
+    postalCode = StringField('Postalcode',validators=[DataRequired('Postalcode is mandatory!')])
+    postOffice = StringField('Postoffice',validators=[DataRequired('Postoffice is mandatory!')])
 
     class Meta:
         csrf = False
