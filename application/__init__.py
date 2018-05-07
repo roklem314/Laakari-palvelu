@@ -1,5 +1,6 @@
 import os
 import random
+import secrets
 from functools import wraps
 from flask import Flask
 from flask_login import LoginManager,current_user
@@ -9,7 +10,7 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 
 if os.environ.get("HEROKU"): #running at HEROKU
-    app.config["SECRET_KEY"] = random.getrandbits(420)
+    app.config["SECRET_KEY"] = secrets.token_bytes(42)
     app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
     app.config["SQLALCHEMY_ECHO"] = False
 
