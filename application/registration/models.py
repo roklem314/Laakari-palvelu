@@ -49,6 +49,7 @@ class Users(Base):
         return response
 
 
+
     # def set_password(self, password):
     #     self.password = generate_password_hash(password)
     #

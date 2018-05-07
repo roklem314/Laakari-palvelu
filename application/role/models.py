@@ -6,10 +6,8 @@ class Role(Base):
     __tablename__ = "role"
 
     role = db.Column('role', db.String(144), nullable=False)
-    # appt_loc = db.relationship("Appt_location", backref='locations', lazy=True)
     user_role = db.relationship("User_Role", backref="role", lazy=True)
-    # user_id = db.Column(db.Integer, db.ForeignKey('user.id'),
-    #                        nullable=True)
+
 
     def __init__(self, role):
         self.role = role

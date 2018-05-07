@@ -2,11 +2,9 @@ from application import db,app
 from flask_login import current_user
 from application.models import Base
 from sqlalchemy.sql import text
+# import sqlite3
+# conn = sqlite3.connect('kanta.db')
 
-#
-# @login.user_loader
-# def load_user(id):
-#     return User.query.get(int(id))
 
 class Location(Base):
     __tablename__ = "location"
@@ -69,3 +67,7 @@ class Location(Base):
             response.append({"time":row[0], "date":row[1],"state":row[2],"address":row[3],"postalCode":row[4],"postOffice":row[5]})
 
         return response
+    # @staticmethod
+    # def add_location():
+    #     c.execute('''INSERT INTO Location(address,postalCode,postOffice)VALUES("",0,"")''')
+    #     con.close()
