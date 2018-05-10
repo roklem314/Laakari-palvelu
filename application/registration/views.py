@@ -93,7 +93,7 @@ def register_user():
             db.session.add(u_role)
             db.session.commit()
 
-            flash('Rekisteröityminen onnistui, voit kirjautua palveluun!')
+            flash('Registration be confirmed, please log in!')
             return redirect(url_for('login'))
         return render_template('/registration/register.html',form = form)
 
@@ -123,7 +123,7 @@ def add_new_doctor():
             db.session.add(doc_role)
             db.session.commit()
 
-            flash('Uusi lääkäri lisätty palveluun!')
+            flash('New doctor has been created!')
             return redirect(url_for('users_list'))
         return render_template('/registration/register_doctor.html',form = DoctorRegistrationForm())
 
@@ -175,7 +175,7 @@ def modify():
 
             db.session.commit()
 
-            flash('Tiedot päivitetty onnistuneesti!')
+            flash('The update was successful!')
             return redirect(url_for('index'))
 
         return render_template("registration/modify.html", form = form,form2 = form2)

@@ -8,7 +8,6 @@ from application.registration.models import Users
 
 class RegistrationForm(FlaskForm):
     name = StringField('Name',validators=[DataRequired('Name is mandatory!')])
-    # gender = RadioField('Sukupuoli', choices=[('value1','muu'),('value2','nainen'),('value2','mies')],validators=[DataRequired("Valinta on pakollinen!")])
     address = StringField('Address', validators=[DataRequired('Address is mandatory!')])
     postal_code = StringField('Postalcode',validators=[DataRequired('Postalcode is mandatory!')])
     post_office = StringField('Postoffice',validators=[DataRequired('Postoffice is mandatory!')])
@@ -20,9 +19,6 @@ class RegistrationForm(FlaskForm):
         u = Users.query.filter_by(email=email.data).first()
         if u is not None:
             raise ValidationError('Email address is already in use!')
-    # def validate_role(self, gender):
-    #     if gender is not null:
-    #         raise ValidationError('Valinta puuttuu!.')
 
     def validate_password(self,password):
         if len(password.data) < 8:
@@ -84,9 +80,6 @@ class DoctorRegistrationForm(FlaskForm):
         u = Users.query.filter_by(email=email.data).first()
         if u is not None:
             raise ValidationError('Email address is already in use!')
-    # def validate_role(self, gender):
-    #     if gender is not null:
-    #         raise ValidationError('Valinta puuttuu!.')
 
 
     class Meta:

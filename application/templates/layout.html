@@ -9,15 +9,8 @@
 </head>
 
 <body>
-  {% with messages = get_flashed_messages() %} {% if messages %}
-  <div class="alert alert-light" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-          </button> {% for message in messages %}
-    <li>{{ message }}</li>
-    {% endfor %}
-  </div>
-  {% endif %} {% endwith %} {% if current_user.is_authenticated %}
+
+  {% if current_user.is_authenticated %}
 
   <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
     <a class="navbar-brand" href="{{ url_for('index') }}">
@@ -48,6 +41,7 @@
     </div>
   </nav>
 
+  </div>
 
   {% else %}
 
@@ -71,6 +65,14 @@
   {% endif %}
 
   <main role="main" class="container">
+    {% with messages = get_flashed_messages() %} {% if messages %}
+    <div class="alert alert-light" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button> {% for message in messages %}
+      <li>{{ message }}</li>
+      {% endfor %}
+    {% endif %} {% endwith %} 
     {% block body %}
     <p>
       Content.
