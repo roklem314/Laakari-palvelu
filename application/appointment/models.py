@@ -19,7 +19,6 @@ class Appointment(Base):
                            nullable=True)
     location_id = db.Column(db.Integer, db.ForeignKey('location.id'),
                            nullable=True)
-    # location = db.relationship("Appt_location", backref='appointment', lazy=True)
     def __init__(self,time,date,doctor):
         self.time = time
         self.date = date

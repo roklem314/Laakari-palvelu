@@ -4,19 +4,19 @@ from wtforms.validators import ValidationError, DataRequired
 
 
 class AppointmentForm(FlaskForm):
-    time = StringField("Aika")
-    date = StringField("Päivämäärä")
-    state = BooleanField("Varaa")
+    time = StringField("Time")
+    date = StringField("Date")
+    state = BooleanField("Book")
 
     class Meta:
         csrf = False
 
 class NewAppointmentForm(FlaskForm):
-    time = StringField("time", validators=[DataRequired('Time is mandatory!')])
+    time = StringField("Time", validators=[DataRequired('Time is mandatory!')])
     date = StringField("Date", validators=[DataRequired('Date is mandatory!')])
     address = StringField('Address', validators=[DataRequired('Address is mandatory!')])
-    postalCode = StringField('Postalcode',validators=[DataRequired('Postalcode is mandatory!')])
-    postOffice = StringField('Postoffice',validators=[DataRequired('Postoffice is mandatory!')])
+    postal_code = StringField('Postalcode',validators=[DataRequired('Postalcode is mandatory!')])
+    post_office = StringField('Postoffice',validators=[DataRequired('Postoffice is mandatory!')])
 
     class Meta:
         csrf = False

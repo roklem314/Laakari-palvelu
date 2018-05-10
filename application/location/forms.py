@@ -8,8 +8,8 @@ from application.registration.models import Users
 
 class LocationForm(FlaskForm):
     address = StringField('Address', validators=[DataRequired('Address is mandatory!')])
-    postalCode = StringField('Postalcode',validators=[DataRequired('Postalcode is mandatory!')])
-    postOffice = StringField('Postoffice',validators=[DataRequired('Postoffice is mandatory!')])
+    postal_code = StringField('Postalcode',validators=[DataRequired('Postalcode is mandatory!')])
+    post_office = StringField('Postoffice',validators=[DataRequired('Postoffice is mandatory!')])
 
     class Meta:
         csrf = False

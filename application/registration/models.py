@@ -3,6 +3,7 @@ from flask_login import current_user
 from application.models import Base
 from application.role.forms import RoleForm
 from application.role.models import Role
+from application.location.models import Location
 from sqlalchemy.sql import text
 
 
@@ -15,7 +16,7 @@ class Users(Base):
     appts = db.relationship("Appointment", backref='account', lazy=True)
     loacation_id= db.Column(db.Integer, db.ForeignKey('location.id'),
                            nullable=True)
-    role = db.relationship("User_Role",backref = 'account',lazy = True)
+    role = db.relationship("user_role",backref = 'account',lazy = True)
 
     def __init__(self, name,email,password):
         self.name = name
@@ -47,6 +48,15 @@ class Users(Base):
             response.append({row[0]})
 
         return response
+
+    # @staticmethod
+    # def insert_admin_with_location():
+    #     stmt = text("INSERT INTO Role(role) VALUES("ADMIN")")
+    #     res = db.engine.execute(stmt)
+    #     # stmt = text("INSERT INTO Location(address,postal_code,post_office) VALUES("null","null","","null",1)")
+    #     # res = db.engine.execute(stmt)
+    #     stmt = text("INSERT INTO Account(name,email,password,appts,location_id,role) VALUES("ADMIN","admin@testi.com","","ADMIN1234",,,1)")
+    #     res = db.engine.execute(stmt)
 
 
 

@@ -25,8 +25,8 @@
             <td>{{ i.time }}</td>
             <td>{{ i.date }}</td>
             <td>{{ i.address}}</td>
-            <td>{{ i.postalCode}}</td>
-            <td>{{i.postOffice}}</td>
+            <td>{{ i.postal_code}}</td>
+            <td>{{i.post_office}}</td>
             {% if i.state == False %}
             <td>
               <form method="GET" action="{{ url_for('varaa',uid= i.id)}}">

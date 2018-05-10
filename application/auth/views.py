@@ -10,14 +10,14 @@ from application.role.models import Role
 
 @app.route("/login", methods = ["GET", "POST"])
 def login():
-
+    
     form = LoginForm()
 
     if form.validate_on_submit():
         u = Users.query.filter_by(email=form.email.data).first()
         # # if u is None or not bcrypt.checkpw(form.password.data.encode("utf-8"), u.password):
         if u.password != form.password.data:
-            
+
             return render_template("auth/login.html", form = form)
 
         if any('ADMIN' in s for s in Users.roles(form.email.data)):

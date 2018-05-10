@@ -10,8 +10,8 @@ class RegistrationForm(FlaskForm):
     name = StringField('Name',validators=[DataRequired('Name is mandatory!')])
     # gender = RadioField('Sukupuoli', choices=[('value1','muu'),('value2','nainen'),('value2','mies')],validators=[DataRequired("Valinta on pakollinen!")])
     address = StringField('Address', validators=[DataRequired('Address is mandatory!')])
-    postalCode = StringField('Postalcode',validators=[DataRequired('Postalcode is mandatory!')])
-    postOffice = StringField('Postoffice',validators=[DataRequired('Postoffice is mandatory!')])
+    postal_code = StringField('Postalcode',validators=[DataRequired('Postalcode is mandatory!')])
+    post_office = StringField('Postoffice',validators=[DataRequired('Postoffice is mandatory!')])
     email = StringField('Email', validators=[DataRequired('Email is mandatory!'), Email("Please check your email!")])
     password = PasswordField('Password',validators=[DataRequired('Password is mandatory!')])
     password2 = PasswordField('Password again', validators=[DataRequired('Please give password again!'),EqualTo("password")])
@@ -76,8 +76,8 @@ class DeleteForm(FlaskForm):
 class DoctorRegistrationForm(FlaskForm):
     name = StringField('Name',validators=[DataRequired('Name is mandatory!')])
     address = StringField('Address', validators=[DataRequired('Address is mandatory!')])
-    postalCode = StringField('Postalcode',validators=[DataRequired('Postalcode is mandatory!')])
-    postOffice = StringField('Postoffice',validators=[DataRequired('Postoffice is mandatory!')])
+    postal_code = StringField('Postalcode',validators=[DataRequired('Postalcode is mandatory!')])
+    post_office = StringField('Postoffice',validators=[DataRequired('Postoffice is mandatory!')])
     email = StringField('Email', validators=[DataRequired('Email is mandatory!'), Email("Please check your email!")])
 
     def validate_email(self, email):

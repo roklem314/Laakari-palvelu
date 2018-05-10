@@ -6,13 +6,13 @@ class Role(Base):
     __tablename__ = "role"
 
     role = db.Column('role', db.String(144), nullable=False)
-    user_role = db.relationship("User_Role", backref="role", lazy=True)
+    user_role = db.relationship("user_role", backref="role", lazy=True)
 
 
     def __init__(self, role):
         self.role = role
 
-class User_Role(Base):
+class user_role(Base):
 
     role_id = db.Column(db.Integer, db.ForeignKey('role.id'),
                            nullable=True)

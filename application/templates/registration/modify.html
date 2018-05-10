@@ -15,11 +15,11 @@
         <span style="color: red;">[{{ error }}]</span> {% endfor %}
       </div>
       <div class="form-group">
-        {{ form2.postalCode.label }}<br> {{ form2.postalCode(size=20 ,value =current_user.postalCode )}}<br> {% for error in form2.postalCode.errors %}
+        {{ form2.postal_code.label }}<br> {{ form2.postal_code(size=20 ,value =current_user.postal_code )}}<br> {% for error in form2.postal_code.errors %}
         <span style="color: red;">[{{ error }}]</span> {% endfor %}
       </div>
       <div class="form-group">
-        {{ form2.postOffice.label }}<br> {{ form2.postOffice(size=20 , value = current_user.postOffice)}}<br> {% for error in form2.postOffice.errors %}
+        {{ form2.post_office.label }}<br> {{ form2.post_office(size=20 , value = current_user.post_office)}}<br> {% for error in form2.post_office.errors %}
         <span style="color: red;">[{{ error }}]</span> {% endfor %}
 
       </div>

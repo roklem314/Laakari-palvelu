@@ -5,7 +5,7 @@ from application.registration.forms import RegistrationForm,ModifyForm,DeleteFor
 from application.registration.models import Users
 from application.appointment.models import Appointment
 from application.role.forms import RoleForm
-from application.role.models import Role
+from application.role.models import Role,user_role
 from application.location.forms import LocationForm
 from application.location.models import Location
 from application.location.models import Base
@@ -21,8 +21,8 @@ def modify_doctor():
         u = Users.query.filter_by(id = current_user.id).first()
         u_home = Location.query.filter_by(id = u.loacation_id).first();
         current_user.address = u_home.address
-        current_user.postalCode = u_home.postalCode
-        current_user.postOffice = u_home.postOffice
+        current_user.postal_code = u_home.postal_code
+        current_user.post_office = u_home.post_office
 
         return render_template("registration/modify_doctor.html", form = ModifyForm(),form2 = LocationForm())
 
@@ -33,8 +33,8 @@ def modify_doctor():
         if form.validate_on_submit():
             new_name = form.name.data
             new_addr = form2.address.data
-            new_postalC = form2.postalCode.data
-            new_postF = form2.postOffice.data
+            new_postalC = form2.postal_code.data
+            new_postF = form2.post_office.data
             new_email = form.email.data
             new_password = form.password.data
 
@@ -43,9 +43,9 @@ def modify_doctor():
             if new_addr != u_home.address:
                 u_home.address = new_addr
             if new_postalC != u_home.address:
-                u_home.postalCode = new_postalC
-            if new_postF != u_home.postOffice:
-                u_home.postOffice = new_postF
+                u_home.postal_code = new_postalC
+            if new_postF != u_home.post_office:
+                u_home.post_office = new_postF
             if new_email != u.email:
                 u.email = new_email
                 # if not bcrypt.checkpw(form.password.data.encode("utf-8"), u.password):
@@ -61,6 +61,14 @@ def modify_doctor():
 @app.route('/register', methods=['GET', 'POST'])
 def register_user():
     form = RegistrationForm()
+    if Users.query.filter(Users.name == "admin").first() is None:
+        admin_role = Role(role="ADMIN")
+        db.session.add(admin_role)
+        db.session.commit()
+
+        admin = Users(name="admin",email="admin@testi.com",password="admin1234")
+        db.session.add(admin)
+        db.session.commit()
 
     if request.method == 'GET':
 
@@ -70,8 +78,9 @@ def register_user():
     if request.method == 'POST':
 
         if form.validate_on_submit():
+
             # u = Users(name=form.name.data, address=form.address.data, email=form.email.data,password = bcrypt.hashpw(form.password.data.encode("utf-8"),bcrypt.gensalt()))
-            u_home = Location(address = form.address.data,postalCode= form.postalCode.data,postOffice=form.postOffice.data)
+            u_home = Location(address = form.address.data,postal_code= form.postal_code.data,post_office=form.post_office.data)
             db.session.add(u_home)
             db.session.commit()
 
@@ -80,13 +89,9 @@ def register_user():
             db.session.add(u)
             db.session.commit()
 
-            u_role = Role("POTILAS")
+            u_role = Role(role="POTILAS")
             db.session.add(u_role)
             db.session.commit()
-            # u_home.u_location = u.id
-
-            db.session.commit()
-
 
             flash('Rekisteröityminen onnistui, voit kirjautua palveluun!')
             return redirect(url_for('login'))
@@ -105,22 +110,18 @@ def add_new_doctor():
 
         if form.validate_on_submit():
             # u = Users(name=form.name.data, address=form.address.data, email=form.email.data,password = bcrypt.hashpw(form.password.data.encode("utf-8"),bcrypt.gensalt()))
-            u_home = Location(address = form.address.data,postalCode= form.postalCode.data,postOffice=form.postOffice.data)
-            db.session.add(u_home)
+            doc_home = Location(address = form.address.data,postal_code= form.postal_code.data,post_office=form.post_office.data)
+            db.session.add(doc_home)
             db.session.commit()
 
-            u = Users(name=form.name.data,email=form.email.data,password = "doctor1234")
-            u.loacation_id = u_home.id
-            db.session.add(u)
+            doc = Users(name=form.name.data,email=form.email.data,password = "doctor1234")
+            doc.loacation_id = doc_home.id
+            db.session.add(doc)
             db.session.commit()
 
-            u_role = Role(role = "DOCTOR")
-            db.session.add(u_role)
+            doc_role = Role(role = "DOCTOR")
+            db.session.add(doc_role)
             db.session.commit()
-            # u_home.u_location = u.id
-
-            db.session.commit()
-
 
             flash('Uusi lääkäri lisätty palveluun!')
             return redirect(url_for('users_list'))
@@ -137,8 +138,8 @@ def modify():
     u = Users.query.filter_by(id = current_user.id).first()
     u_home = Location.query.filter_by(id = u.loacation_id).first();
     current_user.address = u_home.address
-    current_user.postalCode = u_home.postalCode
-    current_user.postOffice = u_home.postOffice
+    current_user.postal_code = u_home.postal_code
+    current_user.post_office = u_home.post_office
 
     if request.method == 'GET':
 
@@ -151,8 +152,8 @@ def modify():
         if form.validate_on_submit():
             new_name = form.name.data
             new_addr = form2.address.data
-            new_postalC = form2.postalCode.data
-            new_postF = form2.postOffice.data
+            new_postalC = form2.postal_code.data
+            new_postF = form2.post_office.data
             new_email = form.email.data
             # password = form.password.data
             # password2 = form.password2.data
@@ -162,9 +163,9 @@ def modify():
             if new_addr != u_home.address:
                 u_home.address = new_addr
             if new_postalC != u_home.address:
-                u_home.postalCode = new_postalC
-            if new_postF != u_home.postOffice:
-                u_home.postOffice = new_postF
+                u_home.postal_code = new_postalC
+            if new_postF != u_home.post_office:
+                u_home.post_office = new_postF
             if new_email != u.email:
                 u.email = new_email
                 # if not bcrypt.checkpw(form.password.data.encode("utf-8"), u.password):
@@ -209,11 +210,3 @@ def delete_user():
             flash('Poisto onnistui!')
             return redirect(url_for('logout'))
     return render_template('/registration/delete.html',form = form)
-
-# @app.route('/user_info', methods=['GET'])
-# def user_info():
-#     omat = Appointment.query.filter(current_user.id == Appointment.account_id).all()
-#     u_home = Location.query.filter(Users.id == u.loacation_id).first();
-#     # role = Role.query.filter(Role.id == current_user.id).first()
-#
-#     return render_template('/registration/user_info.html',omat,u_home)

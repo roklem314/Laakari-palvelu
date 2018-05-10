@@ -29,11 +29,11 @@ def info(uid: int):
 def appts_list():
     u = Users.query.filter_by(id = current_user.id).first()
     u_home = Location.query.filter_by(id = u.loacation_id).first();
-    u_postOffice = u_home.postOffice
-    print(u_postOffice)
-    nearest_locations = Location.list_nearest_locations(u_postOffice)
+    u_post_office = u_home.post_office
+    print(u_post_office)
+    nearest_locations = Location.list_nearest_locations(u_post_office)
     print(nearest_locations)
-    # nearest_locations = Location.query.filter(Location.postOffice == u_postOffice,Location.id == Appointment.location_id).all()
+    # nearest_locations = Location.query.filter(Location.post_office == u_post_office,Location.id == Appointment.location_id).all()
     if nearest_locations is None:
         return render_template("appointment/list.html", appts = Appointment.query.all())
     return render_template("appointment/list.html", appts = Appointment.query.all(), nearest_locations=nearest_locations)
@@ -93,7 +93,7 @@ def add_new_appt():
     if request.method == 'POST':
 
         new_appt= Appointment(form.time.data, form.date.data,False)
-        new_location = Location(form.address.data, form.postalCode.data, form.postOffice.data)
+        new_location = Location(form.address.data, form.postal_code.data, form.post_office.data)
         db.session().add(new_location)
         db.session().commit()
 
