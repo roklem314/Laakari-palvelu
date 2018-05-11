@@ -1,24 +1,24 @@
 # User storyt
 
-- Patient can register to service(done)
-- Patient can login to service(done)
-- Patient can update account information(done)
--	Patietn can list all appointmetn times(done)
--	Patient can book available appointment time(done)
--	Patient can cancel the appointment time(done)
-- Patients can view their chosen appointment time on a separate info page(done)
-- Patient can remove own account from service(done)
-- Patient can inspect appointment on separate info page(done)
-- Administrator can login to the service(done)
-- Adminstrator can list all users of the service(done)
-- Administrator can list all appointment times(done)
-- Administrator can add new appointment times(done)
-- Administrator can add new doctor to service(done)
-- The doctor can log in to the service(done)
--	Doctor can update account information(done)
+- Patient can register to service
+- Patient can login to service
+- Patient can update account information
+-	Patietn can list all appointmetn times
+-	Patient can book available appointment time
+-	Patient can cancel the appointment time
+- Patient can remove own account from service
+- Patient can inspect appointment on separate info page
+- Administrator can login to the service
+- Adminstrator can list all users of the service
+- Administrator can list all appointment times
+- Administrator can add new appointment times
+- Administrator can add new doctor to service
+- The doctor can log in to the service
+-	Doctor can update account information
+- Doctor can inspect appointsments
 - Admistrator can remove the user(next)
-- Doctor sets the appointment time for himself(next)
--	Doctor can list his/her appointment times(next)
+- Doctor set the appointment time for himself(next)
+-	Doctor can list own appointment times(next)
 - Doctor can make a note to the patient medical history (undone)
 - Patietn can view his/her medical history(undone)
 - Doctor can view patient medical history(undone)
