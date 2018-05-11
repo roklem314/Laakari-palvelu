@@ -5,12 +5,6 @@ class Appointment(Base):
 
     __tablename__ = "appointment"
 
-    # patient_idenity = db.Column('patient_idenity', db.String(30),nullable=False)
-    # diagnos = db.Column('diagnos', db.String(16), nullable=False)
-    # operation= db.Column('operation',db.String(16), nullable=False)
-    # info = db.Column('info', db.String(200), nullable=False)
-    # user_id = db.Column(db.Integer, db.ForeignKey('user.id') )
-
     time = db.Column(db.String(5), nullable=False)
     date = db.Column(db.String(10), nullable = False)
     state = db.Column(db.Boolean, default=False, nullable = False)

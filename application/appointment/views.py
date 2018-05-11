@@ -20,31 +20,24 @@ def info(uid: int):
 
     return render_template("appointment/info.html",t_location = Location.find_appt_loacation(id))
 
-# @app.route("/appointment/list", methods=["GET"])
-# @login_required_role_based('PATIENT')
-# def appts_list():
-#     u = Accounts.query.filter_by(id = current_user.id).first()
-#     u_home = Location.query.filter_by(id = u.loacation_id).first();
-#     u_post_office = u_home.post_office
-#     print(u_post_office)
-#     nearest_locations = Location.list_nearest_locations(u_post_office)
-#     print(nearest_locations)
-#     if nearest_locations is None:
-#         return render_template("appointment/list.html", appts = Appointment.query.all())
-#     return render_template("appointment/list.html", appts = Appointment.query.all(), nearest_locations=nearest_locations)
+@app.route("/appointment/list", methods=["GET"])
+@login_required_role_based('PATIENT')
+def appts_list():
+    u = Accounts.query.filter_by(id = current_user.id).first()
+    u_home = Location.query.filter_by(id = u.loacation_id).first();
+    u_post_office = u_home.post_office
+    print(u_post_office)
+    nearest_locations = Location.list_nearest_locations(u_post_office)
+    print(nearest_locations)
+    if nearest_locations is None:
+        return render_template("appointment/list.html", appts = Appointment.query.all())
+    return render_template("appointment/list.html", appts = Appointment.query.all(), nearest_locations=nearest_locations)
 
 @app.route("/appointment/appts_doctor", methods=["GET"])
 @login_required_role_based('DOCTOR')
 def appts_doctor():
 
-    # u = Accounts.query.filter_by(id = current_user.id).first()
-    # u_home = Location.query.filter_by(id = u.loacation_id).first();
-    # u_post_office = u_home.post_office
-    #
-    # nearest_locations = Location.list_nearest_locations(u_post_office)
-    # if nearest_locations is None:
     return render_template("/appointment/appts_doctor.html",appts = Appointment.query.all())
-    # return render_template("appointment/appts_doctor.html", appts = Appointment.query.all(), nearest_locations=nearest_locations)
 
 @app.route("/appointment/appts_list_all", methods=["GET"])
 @login_required_role_based('ADMIN')

@@ -2,9 +2,6 @@ from application import db,app
 from flask_login import current_user
 from application.models import Base
 from sqlalchemy.sql import text
-# import sqlite3
-# conn = sqlite3.connect('kanta.db')
-
 
 class Location(Base):
     __tablename__ = "location"
@@ -57,7 +54,7 @@ class Location(Base):
             response.append({"name":row[0],"email":row[1],"address":row[2],"postal_code":row[3],"post_office":row[4],"role":row[5]})
 
         return response
-        
+
     @staticmethod
     def find_all_appts_and_locations():
         stmt = text("SELECT Appointment.time, Appointment.date, Appointment.state, Location.address,Location.postal_code,Location.post_office FROM Location,Appointment"
@@ -68,7 +65,3 @@ class Location(Base):
             response.append({"time":row[0], "date":row[1],"state":row[2],"address":row[3],"postal_code":row[4],"post_office":row[5]})
 
         return response
-    # @staticmethod
-    # def add_location():
-    #     c.execute('''INSERT INTO Location(address,postal_code,post_office)VALUES("",0,"")''')
-    #     con.close()

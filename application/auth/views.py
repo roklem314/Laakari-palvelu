@@ -6,7 +6,6 @@ from application.appointment.models import Appointment
 from application.auth.forms import LoginForm,AdministratorLoginForm
 from application.location.models import Location
 from application.role.models import Role
-# import bcrypt
 
 @app.route("/login", methods = ["GET", "POST"])
 def login():
@@ -18,7 +17,6 @@ def login():
     if request.method == 'POST':
         if form.validate_on_submit():
             u = Accounts.query.filter_by(email=form.email.data).first()
-            # # if u is None or not bcrypt.checkpw(form.password.data.encode("utf-8"), u.password):
             if u.password != form.password.data:
 
                 return render_template("auth/login.html", form = form)

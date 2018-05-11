@@ -3,7 +3,6 @@ from flask_login import current_user
 from wtforms import StringField, PasswordField, BooleanField,SubmitField,RadioField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
 from application.registration.models import Accounts
-# import bcrypt
 
 
 class RegistrationForm(FlaskForm):
@@ -41,9 +40,6 @@ class ModifyForm(FlaskForm):
 
     def validate_password(self,password):
         u = Accounts.query.filter_by(email=current_user.email).first()
-        # if  0 == u.check_password(password.data):
-        # time.sleep(10)
-        # if not bcrypt.checkpw(password.data.encode("utf-8"), u.password):
         if len(password.data) < 8:
             raise ValidationError('Password must be at least 8 characters!')
         if (u.password != password.data):
@@ -59,9 +55,7 @@ class DeleteForm(FlaskForm):
 
     def validate_password(self,password):
         u = Accounts.query.filter_by(email=current_user.email).first()
-        # if  0 == u.check_password(password.data):
-        # time.sleep(10)
-        # if not bcrypt.checkpw(password.data.encode("utf-8"), u.password):
+
         if not (u.password == password.data):
             raise ValidationError('Password is invalid!')
 

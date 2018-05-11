@@ -5,7 +5,6 @@ from application.registration.forms import RegistrationForm,ModifyForm,DeleteFor
 from application.registration.models import Accounts
 from application.appointment.models import Appointment
 from application.location.forms import LocationForm
-# import bcrypt
 
 @app.route('/get_location', methods=['GET', 'POST'])
 def get_location():
@@ -19,17 +18,7 @@ def get_location():
     if request.method == 'POST':
 
         if form.validate_on_submit():
-            # u = Accounts(name=form.name.data, address=form.address.data, email=form.email.data,password = bcrypt.hashpw(form.password.data.encode("utf-8"),bcrypt.gensalt()))
             u = Accounts(name=form.name.data,email=form.email.data,address = form.address.data,postal_code = form.postal_code.data, post_office = form.post_office.data, password=form.password.data)
-            # rooli = form.role.data
-            # if null == (Role.query.filter_by(rooli).first()):
-            #     new_role = Role(role= rooli)
-            #     t.account_id = current_user.id
-            #     u.role_id = new_role.id
-            #     db.session.add(new_role)
-            #     db.session.commit()
-
-
             db.session.add(u)
             db.session.commit()
 

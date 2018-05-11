@@ -9,7 +9,6 @@ from application.role.models import Role
 from application.location.forms import LocationForm
 from application.location.models import Location
 from application.location.models import Base
-# import bcrypt
 
 @app.route("/registration/modify_doctor",  methods = ['GET','POST'])
 @login_required_role_based('DOCTOR')
@@ -48,8 +47,6 @@ def modify_doctor():
                 u_home.post_office = new_postF
             if new_email != u.email:
                 u.email = new_email
-                # if not bcrypt.checkpw(form.password.data.encode("utf-8"), u.password):
-                #     u.password = bcrypt.hashpw(form.password.data.encode("utf-8"),bcrypt.gensalt())
             if new_password != u.password:
                 u.password = new_password
 
@@ -71,7 +68,6 @@ def register_user():
 
         if form.validate_on_submit():
 
-            # u = Accounts(name=form.name.data, address=form.address.data, email=form.email.data,password = bcrypt.hashpw(form.password.data.encode("utf-8"),bcrypt.gensalt()))
             u_home = Location(address = form.address.data,postal_code= form.postal_code.data,post_office=form.post_office.data)
             db.session.add(u_home)
             db.session.commit()
@@ -101,7 +97,6 @@ def add_new_doctor():
     if request.method == 'POST':
 
         if form.validate_on_submit():
-            # u = Accounts(name=form.name.data, address=form.address.data, email=form.email.data,password = bcrypt.hashpw(form.password.data.encode("utf-8"),bcrypt.gensalt()))
             doc_home = Location(address = form.address.data,postal_code= form.postal_code.data,post_office=form.post_office.data)
             db.session.add(doc_home)
             db.session.commit()
@@ -147,8 +142,6 @@ def modify():
             new_postalC = form2.postal_code.data
             new_postF = form2.post_office.data
             new_email = form.email.data
-            # password = form.password.data
-            # password2 = form.password2.data
 
             if new_name != u.name:
                 u.name = new_name
@@ -160,10 +153,6 @@ def modify():
                 u_home.post_office = new_postF
             if new_email != u.email:
                 u.email = new_email
-                # if not bcrypt.checkpw(form.password.data.encode("utf-8"), u.password):
-                #     u.password = bcrypt.hashpw(form.password.data.encode("utf-8"),bcrypt.gensalt())
-            # if new_password != u.password:
-            #     u.password = new_password
 
             db.session.commit()
 
