@@ -7,6 +7,7 @@
 -	Patient can book available appointment time(done)
 -	Patient can cancel the appointment time(done)
 - Patients can view their chosen appointment time on a separate info page(done)
+- Patient can remove own account from service(done)
 - Patient can inspect appointment on separate info page(done)
 - Administrator can login to the service(done)
 - Adminstrator can list all users of the service(done)
