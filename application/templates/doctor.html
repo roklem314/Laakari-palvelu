@@ -8,24 +8,20 @@
 </head>
 
 <body>
-  {% with messages = get_flashed_messages() %} {% if messages %}
-  <div class="alert alert-light" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-          </button> {% for message in messages %}
-    <li>{{ message }}</li>
-    {% endfor %}
-  </div>
-  {% endif %} {% endwith %} {% if current_user.is_authenticated %}
+
+  {% if current_user.is_authenticated %}
 
   <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-    <a class="navbar-brand" href="{{ url_for('index') }}">
-          <img src="{{ url_for('static', filename = 'klogo2.png') }}" width="190" height="40" class="d-inline-block align-top" alt="FullCare">FullCare appointment booking service</a>
+    <a class="navbar-brand" href="{{ url_for('doctor') }}">
+          <img src="{{ url_for('static', filename = 'klogo2.png') }}" width="190" height="40" class="d-inline-block align-top" alt="FullCare"></a>
 
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
           <a class="nav-link" href="{{ url_for('modify_doctor') }} ">Edit your information</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('appts_doctor') }} ">Appointment booking</a>
         </li>
 
         <span class="navbar-text">Logged in {{ current_user.name,  current_user.roles(current_user.email)}}
@@ -40,7 +36,7 @@
 
   <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
     <a class="navbar-brand" href="{{ url_for('index') }}">
-          <img src="{{ url_for('static', filename = 'klogo2.png') }}" width="190" height="40" class="d-inline-block align-top" alt="">FullCare ajanvarauspalvelu</a>
+          <img src="{{ url_for('static', filename = 'klogo2.png') }}" width="190" height="40" class="d-inline-block align-top" alt="FullCare"></a>
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
@@ -59,9 +55,18 @@
 
 
   <main role="main" class="container">
+    {% with messages = get_flashed_messages() %} {% if messages %}
+    <div class="alert alert-light" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button> {% for message in messages %}
+      <li>{{ message }}</li>
+      {% endfor %}
+    </div>
+    {% endif %} {% endwith %}
     {% block body %}
     <p>
-      Content.
+
     </p>
     {% endblock %}
   </main>

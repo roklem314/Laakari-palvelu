@@ -7,7 +7,7 @@ from application.location.models import Location
 from sqlalchemy.sql import text
 
 
-class Users(Base):
+class Accounts(Base):
     __tablename__ = "account"
 
     name = db.Column('name', db.String(144), nullable=False)
@@ -35,9 +35,6 @@ class Users(Base):
     def is_authenticated(self):
         return True
 
-    # def role(self):
-    #     return role
-
     @staticmethod
     def roles(email):
         stmt = text("SELECT Role.role FROM account,Role "
@@ -48,15 +45,6 @@ class Users(Base):
             response.append({row[0]})
 
         return response
-
-    # @staticmethod
-    # def insert_admin_with_location():
-    #     stmt = text("INSERT INTO Role(role) VALUES("ADMIN")")
-    #     res = db.engine.execute(stmt)
-    #     # stmt = text("INSERT INTO Location(address,postal_code,post_office) VALUES("null","null","","null",1)")
-    #     # res = db.engine.execute(stmt)
-    #     stmt = text("INSERT INTO Account(name,email,password,appts,location_id,role) VALUES("ADMIN","admin@testi.com","","ADMIN1234",,,1)")
-    #     res = db.engine.execute(stmt)
 
 
 

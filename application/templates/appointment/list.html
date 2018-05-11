@@ -25,7 +25,7 @@
           <td scope="col">{{ appt.date }}</td>
           {% if appt.state == False %}
           <td>
-            <form method="GET" action="{{ url_for('varaa',uid= appt.id)}}">
+            <form method="GET" action="{{ url_for('book',uid= appt.id)}}">
               <input type="hidden" uid="{{appt.id}}">
               <button type="submit" class="btn btn-primary" value="Book">Book</button></td>
           </form>
@@ -64,7 +64,7 @@
           <td scope="col">{{ nearest.date }}</td>
           {% if nearest.state == False %}
           <td>
-            <form method="GET" action="{{ url_for('varaa',uid= nearest.id)}}">
+            <form method="GET" action="{{ url_for('book',uid= nearest.id)}}">
               <input type="hidden" uid="{{nearest.id}}">
               <button type="submit" class="btn btn-primary" value="Book">Book</button></td>
             </form>

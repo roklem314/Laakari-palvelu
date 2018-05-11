@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from flask_login import current_user
 from wtforms import StringField, PasswordField, BooleanField,SubmitField,RadioField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
-from application.registration.models import Users
+from application.registration.models import Accounts
 # import bcrypt
 
 
@@ -16,7 +16,7 @@ class RegistrationForm(FlaskForm):
     password2 = PasswordField('Password again', validators=[DataRequired('Please give password again!'),EqualTo("password")])
 
     def validate_email(self, email):
-        u = Users.query.filter_by(email=email.data).first()
+        u = Accounts.query.filter_by(email=email.data).first()
         if u is not None:
             raise ValidationError('Email address is already in use!')
 
@@ -34,13 +34,13 @@ class ModifyForm(FlaskForm):
     password2 = PasswordField('Password again', validators=[DataRequired('Please give password again!'),EqualTo("password")])
 
     def validate_email_password(self, email):
-        u = Users.query.filter_by(email=email.data).first()
+        u = Accounts.query.filter_by(email=email.data).first()
         if u is not None:
             if u.email != current_user.email:
                 raise ValidationError('Email address is already in use!')
 
     def validate_password(self,password):
-        u = Users.query.filter_by(email=current_user.email).first()
+        u = Accounts.query.filter_by(email=current_user.email).first()
         # if  0 == u.check_password(password.data):
         # time.sleep(10)
         # if not bcrypt.checkpw(password.data.encode("utf-8"), u.password):
@@ -58,7 +58,7 @@ class DeleteForm(FlaskForm):
     password2 = PasswordField('Password again', validators=[DataRequired('Please give password again!'),EqualTo("password")])
 
     def validate_password(self,password):
-        u = Users.query.filter_by(email=current_user.email).first()
+        u = Accounts.query.filter_by(email=current_user.email).first()
         # if  0 == u.check_password(password.data):
         # time.sleep(10)
         # if not bcrypt.checkpw(password.data.encode("utf-8"), u.password):
@@ -77,7 +77,7 @@ class DoctorRegistrationForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired('Email is mandatory!'), Email("Please check your email!")])
 
     def validate_email(self, email):
-        u = Users.query.filter_by(email=email.data).first()
+        u = Accounts.query.filter_by(email=email.data).first()
         if u is not None:
             raise ValidationError('Email address is already in use!')
 

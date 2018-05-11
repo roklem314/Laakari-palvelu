@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_login import login_required, current_user
 from application import app,db
 from application.registration.forms import RegistrationForm,ModifyForm,DeleteForm
-from application.registration.models import Users
+from application.registration.models import Accounts
 from application.appointment.models import Appointment
 from application.location.forms import LocationForm
 # import bcrypt
@@ -19,8 +19,8 @@ def get_location():
     if request.method == 'POST':
 
         if form.validate_on_submit():
-            # u = Users(name=form.name.data, address=form.address.data, email=form.email.data,password = bcrypt.hashpw(form.password.data.encode("utf-8"),bcrypt.gensalt()))
-            u = Users(name=form.name.data,email=form.email.data,address = form.address.data,postal_code = form.postal_code.data, post_office = form.post_office.data, password=form.password.data)
+            # u = Accounts(name=form.name.data, address=form.address.data, email=form.email.data,password = bcrypt.hashpw(form.password.data.encode("utf-8"),bcrypt.gensalt()))
+            u = Accounts(name=form.name.data,email=form.email.data,address = form.address.data,postal_code = form.postal_code.data, post_office = form.post_office.data, password=form.password.data)
             # rooli = form.role.data
             # if null == (Role.query.filter_by(rooli).first()):
             #     new_role = Role(role= rooli)

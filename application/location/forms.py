@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from flask_login import current_user
 from wtforms import StringField,IntegerField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
-from application.registration.models import Users
+from application.registration.models import Accounts
 # import bcrypt
 
 

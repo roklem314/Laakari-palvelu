@@ -13,7 +13,7 @@ class Location(Base):
     postal_code = db.Column('postal_code', db.Integer(), nullable=False)
     post_office = db.Column('post_office', db.String(144), nullable = False)
 
-    u_location = db.relationship("Users", backref='loacation', lazy=True)
+    u_location = db.relationship("Accounts", backref='loacation', lazy=True)
 
     appts_location = db.relationship("Appointment", backref='location', lazy=True)
 

@@ -14,6 +14,7 @@ class Appointment(Base):
     time = db.Column(db.String(5), nullable=False)
     date = db.Column(db.String(10), nullable = False)
     state = db.Column(db.Boolean, default=False, nullable = False)
+    doctor = db.Column(db.String(20),nullable=True)
 
     account_id = db.Column(db.Integer, db.ForeignKey('account.id'),
                            nullable=True)

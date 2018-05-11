@@ -56,6 +56,9 @@
         <li class="nav-item">
           <a class="nav-link" href="{{ url_for('register_user') }} ">Register</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('administrator') }} ">Administrator</a>
+        </li>
       </ul>
 
     </div>
@@ -72,7 +75,7 @@
             </button> {% for message in messages %}
       <li>{{ message }}</li>
       {% endfor %}
-    {% endif %} {% endwith %} 
+    {% endif %} {% endwith %}
     {% block body %}
     <p>
       Content.

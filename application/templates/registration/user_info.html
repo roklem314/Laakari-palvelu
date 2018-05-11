@@ -22,13 +22,13 @@
     </tr>
   </thead>
 
-    {% for appt in omat_appts%}
+    {% for appt in my_appt_appts%}
     <tbody>
     <tr>
       <td>{{ appt.time }}</td>
       <td>{{ appt.date }}</td>
     <td>{% if appt.state == True %}
-                  <form method="GET" action="{{ url_for('peru',uid= appt.id)}}">
+                  <form method="GET" action="{{ url_for('cancel_booking',uid= appt.id)}}">
                    <input type="hidden" uid="{{appt.id}}">
                       <button type="submit" class="btn btn-primary" value="Cancel the reception time">Cancel the reception time</button>
                   </form>

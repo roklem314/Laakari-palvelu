@@ -1,0 +1,47 @@
+{% extends "doctor.html" %} {% block body %}
+<!-- <div class="container"> -->
+<div class="home-banner clearfix">
+
+ <div class="row">
+   <!-- <div class="col-md-auto"> -->
+
+   <div class="col-md-7 col-sm-6 home-banner-left">
+
+     <table class="table table-hover">
+       <h4>Appointments</h4>
+       <thead>
+         <tr>
+           <th scope="col">Time</th>
+           <th scope="col">Date</th>
+           <th scope="col">Reservation status</th>
+           <th scope="col">Doctor</th>
+         </tr>
+       </thead>
+
+       {% for appt in appts%}
+       <tr>
+         <!-- <td>{{ appt.id }}</td> -->
+         <td scope="col">{{ appt.time }}</td>
+         <td scope="col">{{ appt.date }}</td>
+         {% if appt.state == False %}
+         <td bgcolor="lime">{{ "Available" }}</td>
+         {% else %}
+         <td bgcolor="red">{{ "Booked" }}</td>
+         {% endif %}
+         <td scope
+         {% if appt.doctor == None %}
+         <td bgcolor="lime">{{ "Available" }}</td>
+         </td>
+         {% else %}
+         <td bgcolor="red">{{ "Booked" }}</td>
+         {% endif %}
+       </tr>
+       {% endfor %}
+     </table>
+   </div>
+
+
+
+ </div>
+</div>
+{% endblock %}

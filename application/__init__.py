@@ -29,7 +29,7 @@ login_manager.login_message = "Please login to use this functionality."
 
 @login_manager.user_loader
 def load_user(user_id):
-    return Users.query.get(user_id)
+    return Accounts.query.get(user_id)
 
 # roles in login_required
 def login_required_role_based(role):
@@ -61,7 +61,7 @@ from application.registration import models
 from application.registration import views
 from application.role import models
 from application.role import views
-from application.registration.models import Users
+from application.registration.models import Accounts
 
 # luodaan taulut tietokantaan tarvittaessa ja
 if not os.environ.get("HEROKU"):

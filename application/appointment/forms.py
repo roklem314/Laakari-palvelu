@@ -2,6 +2,14 @@ from flask_wtf import FlaskForm
 from wtforms import BooleanField, TextField, validators, StringField,IntegerField
 from wtforms.validators import ValidationError, DataRequired
 
+class DoctorAppointmentForm(FlaskForm):
+    time = StringField("Time")
+    date = StringField("Date")
+    state = BooleanField("Book")
+    doctor = StringField("Doctor")
+
+    class Meta:
+        csrf = False
 
 class AppointmentForm(FlaskForm):
     time = StringField("Time")
